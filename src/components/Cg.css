@@ -1,0 +1,62 @@
+.hero {
+    position: relative;
+    height: 400px;
+    background-image: url("https://images.unsplash.com/photo-1558788353-f76d92427f16");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Camada verde transparente */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #16a34a, #10b981);
+    opacity: 0.9;
+}
+
+/* Conteúdo */
+.hero-content {
+    position: relative;
+    background: linear-gradient(135deg, #16a34a, #10b981);
+    max-width: 500px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.hero p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Badge */
+.badge {
+    background: #10b981;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Botão */
+.btn {
+    background: white;
+    color: #16a34a;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .btn:hover {
+        background: #f0f0f0;
+    }
+
