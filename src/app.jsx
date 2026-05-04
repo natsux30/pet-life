@@ -7,7 +7,8 @@ import Links from "./Pages/Links";
 import Login from "./Pages/Login";
 import Cadastro from "./Pages/Cadastro";
 import CadastroPet from "./Pages/CadastroPet";
-import { AppProvider } from "./context/AppContext"; // ← Import
+import Loja from "./Pages/Loja";  // ← Novo import
+import { AppProvider } from "./context/AppContext";
 
 import React from "react";
 import "./Style.css";
@@ -15,12 +16,11 @@ import "./Style.css";
 function App() {
   return (
     <AppProvider>
-      {" "}
-      {/* ← Envolva tudo com AppProvider */}
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/loja" element={<Loja />} />  {/* ← Nova rota */}
           <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/links" element={<Links />} />
