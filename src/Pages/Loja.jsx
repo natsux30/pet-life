@@ -1,7 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import ProductCard from "../components/Card";
 import { useApp } from "../context/AppContext";
+import ProductCard from "../components/Card";
+import {
+  todosProdutos,
+  categorias,
+  portes,
+  idades,
+  materiais,
+  finalidades,
+  getTodasSugestoes,
+  recomendarProdutos,
+} from "../data/produtos";
 
 function Loja() {
   const { pets } = useApp();
@@ -22,249 +32,8 @@ function Loja() {
   const [precoMin, setPrecoMin] = useState("");
   const [precoMax, setPrecoMax] = useState("");
 
-  const todosProdutos = [
-    {
-      id: 1,
-      title: "Brinquedo Mordedor Kong",
-      price: 29.9,
-      image:
-        "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=300",
-      description:
-        "Brinquedo resistente para cães de todas as idades. Ideal para morder e aliviar o estresse.",
-      categoria: "caes",
-      porte: "medio",
-      idade: "adulto",
-      material: "borracha",
-      finalidade: "morder",
-      destaque: true,
-      palavrasChave: ["kong", "mordedor", "resistente", "cachorro", "dentes"],
-    },
-    {
-      id: 2,
-      title: "Arranhador Torre Premium",
-      price: 189.9,
-      image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=300",
-      description:
-        "Arranhador com 3 níveis, ideal para gatos de pequeno e médio porte.",
-      categoria: "gatos",
-      porte: "pequeno",
-      idade: "adulto",
-      material: "sisal",
-      finalidade: "arranhar",
-      destaque: true,
-      palavrasChave: ["arranhador", "torre", "gato", "sisal", "unhas"],
-    },
-    {
-      id: 3,
-      title: "Bola Interativa LED",
-      price: 45.9,
-      image:
-        "https://images.unsplash.com/photo-1535298941396-316d79d0e7fa?w=300",
-      description:
-        "Bola com guizo e luzes LED, estimula o exercício do seu pet.",
-      categoria: "caes",
-      porte: "pequeno",
-      idade: "filhote",
-      material: "plastico",
-      finalidade: "exercicio",
-      destaque: false,
-      palavrasChave: ["bola", "led", "luz", "interativo", "exercício"],
-    },
-    {
-      id: 4,
-      title: "Ratinho com Catnip",
-      price: 15.9,
-      image:
-        "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=300",
-      description: "Ratinho de pelúcia recheado com catnip natural para gatos.",
-      categoria: "gatos",
-      porte: "pequeno",
-      idade: "adulto",
-      material: "pelucia",
-      finalidade: "cacar",
-      destaque: false,
-      palavrasChave: ["ratinho", "catnip", "pelúcia", "gato", "caça"],
-    },
-    {
-      id: 5,
-      title: "Osso de Nylon Defumado",
-      price: 34.9,
-      image:
-        "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300",
-      description:
-        "Osso resistente para cães fortes, ideal para raças grandes.",
-      categoria: "caes",
-      porte: "grande",
-      idade: "adulto",
-      material: "nylon",
-      finalidade: "morder",
-      destaque: false,
-      palavrasChave: ["osso", "nylon", "resistente", "cachorro", "grande"],
-    },
-    {
-      id: 6,
-      title: "Torre de Atividades",
-      price: 129.9,
-      image:
-        "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300",
-      description: "Torre com múltiplas atividades e esconderijos para gatos.",
-      categoria: "gatos",
-      porte: "medio",
-      idade: "filhote",
-      material: "madeira",
-      finalidade: "escalar",
-      destaque: true,
-      palavrasChave: ["torre", "atividades", "gato", "escalar", "madeira"],
-    },
-    {
-      id: 7,
-      title: "Corda de Algodão Trançada",
-      price: 19.9,
-      image:
-        "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300",
-      description:
-        "Corda resistente para brincadeiras de cabo de guerra com seu cão.",
-      categoria: "caes",
-      porte: "grande",
-      idade: "adulto",
-      material: "algodao",
-      finalidade: "exercicio",
-      destaque: false,
-      palavrasChave: ["corda", "algodão", "cabo", "guerra", "puxar"],
-    },
-    {
-      id: 8,
-      title: "Varinha com Penas",
-      price: 22.9,
-      image: "https://images.unsplash.com/photo-1559190394-df5a28a322b2?w=300",
-      description:
-        "Varinha interativa com penas coloridas, estimula o instinto de caça.",
-      categoria: "gatos",
-      porte: "pequeno",
-      idade: "idoso",
-      material: "plastico",
-      finalidade: "cacar",
-      destaque: false,
-      palavrasChave: ["varinha", "penas", "gato", "caça", "interativo"],
-    },
-    {
-      id: 9,
-      title: "Túnel para Roedores",
-      price: 35.9,
-      image: "https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=300",
-      description:
-        "Túnel flexível ideal para hamsters, porquinhos-da-índia e coelhos.",
-      categoria: "outros",
-      porte: "pequeno",
-      idade: "filhote",
-      material: "tecido",
-      finalidade: "explorar",
-      destaque: false,
-      palavrasChave: ["túnel", "roedores", "hamster", "coelho", "explorar"],
-    },
-    {
-      id: 10,
-      title: "Bolinha com Catnip Orgânico",
-      price: 12.9,
-      image:
-        "https://images.unsplash.com/photo-1526948128573-703ee1aeb2a7?w=300",
-      description:
-        "Bolinha recheada com catnip orgânico, diversão garantida para felinos.",
-      categoria: "gatos",
-      porte: "pequeno",
-      idade: "idoso",
-      material: "tecido",
-      finalidade: "cacar",
-      destaque: false,
-      palavrasChave: ["bolinha", "catnip", "orgânico", "gato", "pelúcia"],
-    },
-    {
-      id: 11,
-      title: "Frisbee Flexível",
-      price: 39.9,
-      image:
-        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=300",
-      description:
-        "Frisbee flexível e seguro para cães ativos, fácil de lançar.",
-      categoria: "caes",
-      porte: "grande",
-      idade: "adulto",
-      material: "borracha",
-      finalidade: "exercicio",
-      destaque: false,
-      palavrasChave: ["frisbee", "disco", "flexível", "cachorro", "lançar"],
-    },
-    {
-      id: 12,
-      title: "Brinquedo Dental para Filhotes",
-      price: 24.9,
-      image:
-        "https://images.unsplash.com/photo-1534361960057-19889db9621e?w=300",
-      description:
-        "Mordedor dental que massageia a gengiva de filhotes em crescimento.",
-      categoria: "caes",
-      porte: "pequeno",
-      idade: "filhote",
-      material: "borracha",
-      finalidade: "dental",
-      destaque: false,
-      palavrasChave: ["dental", "filhote", "dentes", "gengiva", "massagem"],
-    },
-  ];
-
   // Lista de sugestões baseada nos produtos
-  const todasSugestoes = [
-    ...new Set(
-      todosProdutos.flatMap(function (p) {
-        return p.palavrasChave;
-      }),
-    ),
-  ];
-
-  // Filtros disponíveis
-  const categorias = [
-    { id: "todos", nome: "Todos", icone: "🎾" },
-    { id: "caes", nome: "Cães", icone: "🐕" },
-    { id: "gatos", nome: "Gatos", icone: "🐈" },
-    { id: "outros", nome: "Outros", icone: "🐾" },
-  ];
-
-  const portes = [
-    { id: "todos", nome: "Todos" },
-    { id: "pequeno", nome: "🐭 Pequeno" },
-    { id: "medio", nome: "🐕 Médio" },
-    { id: "grande", nome: "🐶 Grande" },
-  ];
-
-  const idades = [
-    { id: "todos", nome: "Todas" },
-    { id: "filhote", nome: "🍼 Filhote" },
-    { id: "adulto", nome: "⭐ Adulto" },
-    { id: "idoso", nome: "🧓 Idoso" },
-  ];
-
-  const materiais = [
-    { id: "todos", nome: "Todos" },
-    { id: "borracha", nome: "Borracha" },
-    { id: "plastico", nome: "Plástico" },
-    { id: "pelucia", nome: "Pelúcia" },
-    { id: "sisal", nome: "Sisal" },
-    { id: "nylon", nome: "Nylon" },
-    { id: "algodao", nome: "Algodão" },
-    { id: "madeira", nome: "Madeira" },
-    { id: "tecido", nome: "Tecido" },
-  ];
-
-  const finalidades = [
-    { id: "todos", nome: "Todas" },
-    { id: "morder", nome: "🦷 Morder" },
-    { id: "arranhar", nome: "💅 Arranhar" },
-    { id: "cacar", nome: "🎯 Caçar" },
-    { id: "exercicio", nome: "🏃 Exercício" },
-    { id: "escalar", nome: "🧗 Escalar" },
-    { id: "explorar", nome: "🔍 Explorar" },
-    { id: "dental", nome: "🪥 Dental" },
-  ];
+  const todasSugestoes = getTodasSugestoes();
 
   function handleAddToCart(product) {
     console.log("Produto adicionado:", product);
@@ -799,6 +568,7 @@ function Loja() {
             <option value="nome">Nome A-Z</option>
           </select>
         </div>
+
         {/* ========== SEÇÃO DE RECOMENDAÇÕES ========== */}
         {pets.length > 0 && (
           <div
@@ -828,15 +598,10 @@ function Loja() {
                 >
                   🎯 Recomendado para seus Pets
                 </h2>
-                <p
-                  style={{
-                    margin: 0,
-                    color: "#666",
-                    fontSize: "0.9rem",
-                  }}
-                >
+                <p style={{ margin: 0, color: "#666", fontSize: "0.9rem" }}>
                   Selecionamos produtos ideais para{" "}
                   {pets.length > 1 ? "seus pets" : "seu pet"}
+                  com base no perfil e comportamento
                 </p>
               </div>
               <Link
@@ -861,75 +626,15 @@ function Loja() {
               }}
             >
               {pets.map(function (pet) {
+                // Lista de alergias do pet
+                const alergiasPet = pet.alergias
+                  ? pet.alergias.split(", ").map(function (a) {
+                      return a.trim().toLowerCase();
+                    })
+                  : [];
+
                 // Lógica de recomendação baseada no perfil do pet
-                const recomendacoes = todosProdutos
-                  .filter(function (produto) {
-                    let pontuacao = 0;
-
-                    // Match por categoria (cão/gato)
-                    if (pet.tipo === "cachorro" && produto.categoria === "caes")
-                      pontuacao += 3;
-                    if (pet.tipo === "gato" && produto.categoria === "gatos")
-                      pontuacao += 3;
-
-                    // Match por porte
-                    if (pet.porte === produto.porte) pontuacao += 2;
-                    if (pet.porte === "mini" && produto.porte === "pequeno")
-                      pontuacao += 1;
-
-                    // Match por idade
-                    if (pet.idade < 1 && produto.idade === "filhote")
-                      pontuacao += 2;
-                    if (
-                      pet.idade >= 1 &&
-                      pet.idade <= 7 &&
-                      produto.idade === "adulto"
-                    )
-                      pontuacao += 2;
-                    if (pet.idade > 7 && produto.idade === "idoso")
-                      pontuacao += 2;
-
-                    // Match por peso
-                    if (pet.peso < 5 && produto.porte === "pequeno")
-                      pontuacao += 1;
-                    if (
-                      pet.peso >= 5 &&
-                      pet.peso < 15 &&
-                      produto.porte === "medio"
-                    )
-                      pontuacao += 1;
-                    if (pet.peso >= 15 && produto.porte === "grande")
-                      pontuacao += 1;
-
-                    // Produtos destaque têm prioridade
-                    if (produto.destaque) pontuacao += 1;
-
-                    return pontuacao >= 3;
-                  })
-                  .sort(function (a, b) {
-                    // Ordena por relevância
-                    let scoreA = 0;
-                    let scoreB = 0;
-
-                    if (pet.tipo === "cachorro" && a.categoria === "caes")
-                      scoreA += 10;
-                    if (pet.tipo === "gato" && a.categoria === "gatos")
-                      scoreA += 10;
-                    if (a.porte === pet.porte) scoreA += 5;
-                    if (a.destaque) scoreA += 3;
-
-                    if (pet.tipo === "cachorro" && b.categoria === "caes")
-                      scoreB += 10;
-                    if (pet.tipo === "gato" && b.categoria === "gatos")
-                      scoreB += 10;
-                    if (b.porte === pet.porte) scoreB += 5;
-                    if (b.destaque) scoreB += 3;
-
-                    return scoreB - scoreA;
-                  })
-                  .slice(0, 2); // Mostra apenas 2 recomendações por pet
-
-                if (recomendacoes.length === 0) return null;
+                const recomendacoes = recomendarProdutos(pet, 2);
 
                 const tipoEmoji = {
                   cachorro: "🐕",
@@ -994,6 +699,52 @@ function Loja() {
                       </div>
                     </div>
 
+                    {/* Badge de comportamento */}
+                    {pet.comportamento && (
+                      <div
+                        style={{
+                          background: "#e8e0ff",
+                          color: "#5e35b1",
+                          padding: "5px 10px",
+                          borderRadius: "12px",
+                          fontSize: "0.75rem",
+                          display: "inline-block",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        🎭 {pet.comportamento}
+                      </div>
+                    )}
+
+                    {/* Alergias */}
+                    {pet.alergias && (
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "4px",
+                          flexWrap: "wrap",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        {pet.alergias.split(", ").map(function (alergia) {
+                          return (
+                            <span
+                              key={alergia}
+                              style={{
+                                background: "#ffe0e0",
+                                color: "#d63031",
+                                padding: "2px 8px",
+                                borderRadius: "10px",
+                                fontSize: "0.65rem",
+                              }}
+                            >
+                              ⚠️ {alergia}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+
                     {/* Produtos Recomendados */}
                     <div
                       style={{
@@ -1048,6 +799,34 @@ function Loja() {
                             >
                               {produto.title}
                             </h4>
+
+                            {/* Badge de comportamento do produto */}
+                            <div style={{ marginBottom: "5px" }}>
+                              {produto.comportamentosIndicados
+                                .slice(0, 2)
+                                .map(function (comp) {
+                                  const isMatch = pet.comportamento === comp;
+                                  return (
+                                    <span
+                                      key={comp}
+                                      style={{
+                                        background: isMatch
+                                          ? "#e8f5e9"
+                                          : "#f5f5f5",
+                                        color: isMatch ? "#2e7d32" : "#999",
+                                        padding: "2px 6px",
+                                        borderRadius: "8px",
+                                        fontSize: "0.6rem",
+                                        marginRight: "2px",
+                                      }}
+                                    >
+                                      {isMatch ? "✓ " : ""}
+                                      {comp}
+                                    </span>
+                                  );
+                                })}
+                            </div>
+
                             <p
                               style={{
                                 margin: "0 0 8px 0",
@@ -1104,7 +883,20 @@ function Loja() {
                           ✓ Porte {pet.porte}
                         </span>
                       )}
-                      {pet.idade < 1 && (
+                      {pet.comportamento && (
+                        <span
+                          style={{
+                            background: "#e8e0ff",
+                            color: "#5e35b1",
+                            padding: "3px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.7rem",
+                          }}
+                        >
+                          🎭 {pet.comportamento}
+                        </span>
+                      )}
+                      {alergiasPet.length > 0 && (
                         <span
                           style={{
                             background: "#fff3e0",
@@ -1114,7 +906,7 @@ function Loja() {
                             fontSize: "0.7rem",
                           }}
                         >
-                          ✓ Filhote
+                          🛡️ Filtrado por alergias
                         </span>
                       )}
                     </div>
@@ -1170,6 +962,7 @@ function Loja() {
               return (
                 <ProductCard
                   key={produto.id}
+                  id={produto.id}
                   title={produto.title}
                   price={produto.price}
                   image={produto.image}

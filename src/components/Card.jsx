@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import "../Style.css";
+
 export default function ProductCard({
+    id,  // ← Adicione esta prop
     title,
     price,
     image,
@@ -9,7 +12,9 @@ export default function ProductCard({
 }) {
     const [loading, setLoading] = useState(false);
 
-    function handleBuy() {
+    function handleBuy(e) {
+        e.preventDefault();  // ← Impede que o Link navegue
+        e.stopPropagation(); // ← Impede propagação do evento
         setLoading(true);
 
         setTimeout(() => {
@@ -19,24 +24,29 @@ export default function ProductCard({
     }
 
     return (
-        <div className="card">
-            <img src={image} alt={title} className="card-img" />
+        <Link 
+            to={`/produto/${id}`}  // ← Envolve tudo com Link
+            style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+            <div className="card">
+                <img src={image} alt={title} className="card-img" />
 
-            <div className="card-body">
-                <h3 className="card-title">{title}</h3>
+                <div className="card-body">
+                    <h3 className="card-title">{title}</h3>
 
-                <p className="card-description">{description}</p>
+                    <p className="card-description">{description}</p>
 
-                <span className="card-price">R$ {price}</span>
+                    <span className="card-price">R$ {price.toFixed(2)}</span>
 
-                <button
-                    className="card-button"
-                    onClick={handleBuy}
-                    disabled={loading}
-                >
-                    {loading ? "Adicionando..." : "Adicionar ao carrinho"}
-                </button>
+                    <button
+                        className="card-button"
+                        onClick={handleBuy}
+                        disabled={loading}
+                    >
+                        {loading ? "Adicionando..." : "Adicionar ao carrinho"}
+                    </button>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }

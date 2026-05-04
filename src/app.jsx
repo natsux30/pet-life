@@ -7,8 +7,9 @@ import Links from "./Pages/Links";
 import Login from "./Pages/Login";
 import Cadastro from "./Pages/Cadastro";
 import CadastroPet from "./Pages/CadastroPet";
-import Loja from "./Pages/Loja";  // ← Novo import
+import Loja from "./Pages/Loja"; 
 import { AppProvider } from "./context/AppContext";
+import DetalhesProduto from "./Pages/DetalhesProduto"; 
 
 import React from "react";
 import "./Style.css";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/cadastro-pet" element={<CadastroPet />} />
+          <Route path="/produto/:id" element={<DetalhesProduto />} /> 
         </Routes>
       </BrowserRouter>
     </AppProvider>
