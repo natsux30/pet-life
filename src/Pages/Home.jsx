@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/Card";
 import Cg from "../components/Cg";
 import "../Style.css";
+import { useApp } from "../context/AppContext";
+import { useToast } from "../components/Toast";
 
 function Home() {
+  const { adicionarAoCarrinho } = useApp();
+  const { addToast } = useToast();
+  function handleAddToCart(product) {
+    adicionarAoCarrinho(product, 1);
+    addToast(`${product.title} adicionado ao carrinho! 🛒`, "success");
+  }
   const products = [
     {
       id: 1,
@@ -83,11 +91,6 @@ function Home() {
       estrelas: 4,
     },
   ];
-
-  function handleAddToCart(product) {
-    console.log("Produto adicionado:", product);
-    alert(`${product.title} adicionado ao carrinho! 🛒`);
-  }
 
   const containerStyle = {
     display: "grid",
@@ -255,7 +258,7 @@ function Home() {
                 description={product.description}
                 onAddToCart={function () {
                   handleAddToCart(product);
-                }}
+                }} // ← ASSIM
               />
             );
           })}

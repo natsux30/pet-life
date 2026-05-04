@@ -7,9 +7,10 @@ import Links from "./Pages/Links";
 import Login from "./Pages/Login";
 import Cadastro from "./Pages/Cadastro";
 import CadastroPet from "./Pages/CadastroPet";
-import Loja from "./Pages/Loja"; 
+import Loja from "./Pages/Loja";
+import DetalhesProduto from "./Pages/DetalhesProduto";
 import { AppProvider } from "./context/AppContext";
-import DetalhesProduto from "./Pages/DetalhesProduto"; 
+import { ToastProvider } from "./components/Toast";
 
 import React from "react";
 import "./Style.css";
@@ -17,20 +18,22 @@ import "./Style.css";
 function App() {
   return (
     <AppProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/loja" element={<Loja />} />  {/* ← Nova rota */}
-          <Route path="/carrinho" element={<Carrinho />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/links" element={<Links />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/cadastro-pet" element={<CadastroPet />} />
-          <Route path="/produto/:id" element={<DetalhesProduto />} /> 
-        </Routes>
-      </BrowserRouter>
+      <ToastProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/loja" element={<Loja />} />
+            <Route path="/produto/:id" element={<DetalhesProduto />} />
+            <Route path="/carrinho" element={<Carrinho />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/links" element={<Links />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/cadastro-pet" element={<CadastroPet />} />
+          </Routes>
+        </BrowserRouter>
+      </ToastProvider>
     </AppProvider>
   );
 }

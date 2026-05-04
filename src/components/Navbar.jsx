@@ -4,7 +4,8 @@ import { useApp } from "../context/AppContext";
 import "../Style.css";
 
 function Navbar() {
-  const { usuario, logoutUser } = useApp();
+  const { usuario, logoutUser, getQuantidadeItens } = useApp();
+  const quantidadeItens = getQuantidadeItens();
   const [menuAberto, setMenuAberto] = useState(false);
 
   function handleLogout() {
@@ -68,6 +69,21 @@ function Navbar() {
           <li className="navbar__item">
             <Link to="/carrinho" className="navbar__links" onClick={fecharMenu}>
               🛒 Carrinho
+              {quantidadeItens > 0 && (
+                <span
+                  style={{
+                    background: "#ff0844",
+                    color: "white",
+                    borderRadius: "50%",
+                    padding: "2px 7px",
+                    fontSize: "0.7rem",
+                    marginLeft: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {quantidadeItens}
+                </span>
+              )}
             </Link>
           </li>
 

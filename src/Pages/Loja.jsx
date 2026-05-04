@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ProductCard from "../components/Card";
+import { useToast } from "../components/Toast";
 import {
   todosProdutos,
   categorias,
@@ -14,7 +15,10 @@ import {
 } from "../data/produtos";
 
 function Loja() {
-  const { pets } = useApp();
+  const appContext = useApp();
+  const adicionarAoCarrinho = appContext.adicionarAoCarrinho;
+  const pets = appContext.pets;
+  const { addToast } = useToast();
   const [busca, setBusca] = useState("");
   const [sugestoes, setSugestoes] = useState([]);
   const [mostrarSugestoes, setMostrarSugestoes] = useState(false);
@@ -22,6 +26,17 @@ function Loja() {
   const inputRef = useRef(null);
   const sugestoesRef = useRef(null);
 
+  function handleAddToCart(product) {
+    console.log("Context:", appContext);
+    console.log("adicionarAoCarrinho:", adicionarAoCarrinho);
+
+    if (typeof adicionarAoCarrinho === "function") {
+      adicionarAoCarrinho(product, 1);
+      addToast(`${product.title} adicionado ao carrinho! 🛒`, "success");
+    } else {
+      console.error("adicionarAoCarrinho não é uma função!");
+    }
+  }
   // Estados dos filtros
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("todos");
   const [porteSelecionado, setPorteSelecionado] = useState("todos");
@@ -34,11 +49,6 @@ function Loja() {
 
   // Lista de sugestões baseada nos produtos
   const todasSugestoes = getTodasSugestoes();
-
-  function handleAddToCart(product) {
-    console.log("Produto adicionado:", product);
-    alert(`${product.title} adicionado ao carrinho! 🛒`);
-  }
 
   function handleBuscaChange(e) {
     const valor = e.target.value;
@@ -969,7 +979,7 @@ function Loja() {
                   description={produto.description}
                   onAddToCart={function () {
                     handleAddToCart(produto);
-                  }}
+                  }} // ← ASSIM
                 />
               );
             })}
