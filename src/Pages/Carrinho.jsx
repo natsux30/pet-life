@@ -14,13 +14,17 @@ function Carrinho() {
     getFrete,
     getTotal,
     getQuantidadeItens,
+    cupom,
+    desconto,
+    cupomAplicado,
+    aplicarCupom,
+    removerCupom,
   } = useApp();
   const { addToast } = useToast();
   const [itemRemovendo, setItemRemovendo] = useState(null);
   const [cep, setCep] = useState("");
-  const [cupom, setCupom] = useState("");
-  const [cupomAplicado, setCupomAplicado] = useState(false);
-  const [desconto, setDesconto] = useState(0);
+  const [cupomInput, setCupomInput] = useState("");
+  const totalComDesconto = getTotal() - desconto;
 
   function handleRemover(produtoId) {
     setItemRemovendo(produtoId);
@@ -38,35 +42,28 @@ function Carrinho() {
   }
 
   function handleAplicarCupom() {
-    const cuponsValidos = {
-      PET10: 10, // 10% de desconto
-      PET20: 20, // 20% de desconto
-      FRETEGRATIS: 0, // Frete grátis
-      BOASVINDAS: 15, // 15% de desconto
-    };
+    if (!cupomInput.trim()) {
+      addToast("⚠️ Digite um código de cupom", "warning");
+      return;
+    }
 
-    const descontoPercentual = cuponsValidos[cupom.toUpperCase()];
+    const resultado = aplicarCupom(cupomInput, getSubtotal(), getFrete());
 
-    if (descontoPercentual !== undefined) {
-      const valorDesconto = (getSubtotal() * descontoPercentual) / 100;
-      setDesconto(valorDesconto);
-      setCupomAplicado(true);
-      addToast(
-        `🎉 Cupom aplicado! ${descontoPercentual}% de desconto`,
-        "success",
-      );
+    if (resultado.sucesso) {
+      addToast(`🎉 ${resultado.mensagem}`, "success");
     } else {
-      addToast("❌ Cupom inválido", "error");
+      addToast(`❌ ${resultado.mensagem}`, "error");
     }
   }
 
+  function handleRemoverCupom() {
+    removerCupom();
+    setCupomInput("");
+    addToast("Cupom removido", "info");
+  }
+
   function handleFinalizarCompra() {
-    addToast(
-      "✅ Compra finalizada com sucesso! Obrigado por comprar na Pets-LifeStyle!",
-      "success",
-    );
-    limparCarrinho();
-    navigate("/");
+    navigate("/checkout");
   }
 
   function formatarCEP(value) {
@@ -404,59 +401,76 @@ function Carrinho() {
                 >
                   Cupom de Desconto
                 </label>
-                <div style={{ display: "flex", gap: "10px" }}>
-                  <input
-                    type="text"
-                    placeholder="Digite o cupom"
-                    value={cupom}
-                    onChange={function (e) {
-                      setCupom(e.target.value.toUpperCase());
-                    }}
-                    disabled={cupomAplicado}
+                <div style={{ marginBottom: "20px" }}>
+                  <label
                     style={{
-                      flex: 1,
-                      padding: "10px",
-                      border: `2px solid ${cupomAplicado ? "#2e7d32" : "#e0e0e0"}`,
-                      borderRadius: "8px",
-                      fontSize: "0.9rem",
-                      background: cupomAplicado ? "#e8f5e9" : "white",
+                      display: "block",
+                      color: "#666",
+                      fontSize: "0.85rem",
+                      marginBottom: "5px",
                     }}
-                  />
-                  {!cupomAplicado ? (
-                    <button
-                      onClick={handleAplicarCupom}
+                  >
+                    Cupom de Desconto
+                  </label>
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <input
+                      type="text"
+                      placeholder="Digite o cupom"
+                      value={cupomInput}
+                      onChange={function (e) {
+                        setCupomInput(e.target.value.toUpperCase());
+                      }}
+                      disabled={cupomAplicado}
                       style={{
-                        padding: "10px 15px",
-                        background: "#667eea",
-                        color: "white",
-                        border: "none",
+                        flex: 1,
+                        padding: "10px",
+                        border: `2px solid ${cupomAplicado ? "#2e7d32" : "#e0e0e0"}`,
                         borderRadius: "8px",
-                        cursor: "pointer",
-                        fontSize: "0.85rem",
+                        fontSize: "0.9rem",
+                        background: cupomAplicado ? "#e8f5e9" : "white",
                       }}
-                    >
-                      Aplicar
-                    </button>
-                  ) : (
-                    <button
-                      onClick={function () {
-                        setCupom("");
-                        setCupomAplicado(false);
-                        setDesconto(0);
-                      }}
-                      style={{
-                        padding: "10px 15px",
-                        background: "#ff4757",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        fontSize: "0.85rem",
-                      }}
-                    >
-                      ✕
-                    </button>
-                  )}
+                    />
+                    {!cupomAplicado ? (
+                      <button
+                        onClick={handleAplicarCupom}
+                        style={{
+                          padding: "10px 15px",
+                          background: "#667eea",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontSize: "0.85rem",
+                        }}
+                      >
+                        Aplicar
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handleRemoverCupom}
+                        style={{
+                          padding: "10px 15px",
+                          background: "#ff4757",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                          fontSize: "0.85rem",
+                        }}
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      marginTop: "5px",
+                      fontSize: "0.75rem",
+                      color: "#999",
+                    }}
+                  >
+                    Cupons: PET10, PET20, BOASVINDAS, FRETEGRATIS
+                  </div>
                 </div>
                 <div
                   style={{
@@ -496,7 +510,7 @@ function Carrinho() {
                       fontSize: "0.9rem",
                     }}
                   >
-                    <span>Desconto</span>
+                    <span>Desconto ({cupom})</span>
                     <span>- R$ {desconto.toFixed(2)}</span>
                   </div>
                 )}
@@ -519,6 +533,7 @@ function Carrinho() {
                       : `R$ ${getFrete().toFixed(2)}`}
                   </span>
                 </div>
+                {/* TOTAL COM DECONTO E FRETE */}
 
                 <div
                   style={{
@@ -534,7 +549,7 @@ function Carrinho() {
                 >
                   <span>Total</span>
                   <span style={{ color: "#667eea" }}>
-                    R$ {(getTotal() - desconto).toFixed(2)}
+                    R$ {totalComDesconto.toFixed(2)}
                   </span>
                 </div>
 

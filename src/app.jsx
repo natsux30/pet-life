@@ -11,6 +11,8 @@ import Loja from "./Pages/Loja";
 import DetalhesProduto from "./Pages/DetalhesProduto";
 import { AppProvider } from "./context/AppContext";
 import { ToastProvider } from "./components/Toast";
+import Checkout from "./Pages/Checkout";
+import Rastreio from "./Pages/Rastreio";
 
 import React from "react";
 import "./Style.css";
@@ -31,6 +33,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/cadastro-pet" element={<CadastroPet />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/rastreio" element={<Rastreio />} />
           </Routes>
         </BrowserRouter>
       </ToastProvider>
