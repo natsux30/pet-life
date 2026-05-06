@@ -9,10 +9,11 @@ import Cadastro from "./Pages/Cadastro";
 import CadastroPet from "./Pages/CadastroPet";
 import Loja from "./Pages/Loja";
 import DetalhesProduto from "./Pages/DetalhesProduto";
-import { AppProvider } from "./context/AppContext";
-import { ToastProvider } from "./components/Toast";
 import Checkout from "./Pages/Checkout";
 import Rastreio from "./Pages/Rastreio";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AppProvider } from "./context/AppContext";
+import { ToastProvider } from "./components/Toast";
 
 import React from "react";
 import "./Style.css";
@@ -24,17 +25,40 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
+            {/* Rotas públicas */}
             <Route path="/" element={<Home />} />
             <Route path="/loja" element={<Loja />} />
             <Route path="/produto/:id" element={<DetalhesProduto />} />
-            <Route path="/carrinho" element={<Carrinho />} />
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/links" element={<Links />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/cadastro-pet" element={<CadastroPet />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/rastreio" element={<Rastreio />} />
+            <Route path="/links" element={<Links />} />
+
+            {/* Rotas protegidas */}
+            <Route path="/carrinho" element={
+              <ProtectedRoute>
+                <Carrinho />
+              </ProtectedRoute>
+            } />
+            <Route path="/checkout" element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            } />
+            <Route path="/perfil" element={
+              <ProtectedRoute>
+                <Perfil />
+              </ProtectedRoute>
+            } />
+            <Route path="/cadastro-pet" element={
+              <ProtectedRoute>
+                <CadastroPet />
+              </ProtectedRoute>
+            } />
+            <Route path="/rastreio" element={
+              <ProtectedRoute>
+                <Rastreio />
+              </ProtectedRoute>
+            } />
           </Routes>
         </BrowserRouter>
       </ToastProvider>

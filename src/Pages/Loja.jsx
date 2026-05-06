@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import ProductCard from "../components/Card";
 import { useToast } from "../components/Toast";
@@ -25,18 +25,19 @@ function Loja() {
   const [filtrosAbertos, setFiltrosAbertos] = useState(false);
   const inputRef = useRef(null);
   const sugestoesRef = useRef(null);
+  const navigate = useNavigate();
+  const { usuario } = useApp();
 
   function handleAddToCart(product) {
-    console.log("Context:", appContext);
-    console.log("adicionarAoCarrinho:", adicionarAoCarrinho);
-
-    if (typeof adicionarAoCarrinho === "function") {
-      adicionarAoCarrinho(product, 1);
-      addToast(`${product.title} adicionado ao carrinho! 🛒`, "success");
-    } else {
-      console.error("adicionarAoCarrinho não é uma função!");
+    if (!usuario) {
+      addToast("🔒 Faça login para adicionar ao carrinho", "warning");
+      navigate("/login");
+      return;
     }
+    adicionarAoCarrinho(product, 1);
+    addToast(`${product.title} adicionado ao carrinho! 🛒`, "success");
   }
+
   // Estados dos filtros
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("todos");
   const [porteSelecionado, setPorteSelecionado] = useState("todos");

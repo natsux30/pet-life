@@ -1,11 +1,13 @@
 import { useApp } from "../context/AppContext";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useCep } from "../hooks/useCep";
 
 const Cadastro = () => {
   const navigate = useNavigate();
   const { loginUser } = useApp();
   const [step, setStep] = useState(1);
+  const { buscarCep, loading: loadingCep, erro: erroCep } = useCep();
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -131,25 +133,41 @@ const Cadastro = () => {
     }
   };
 
-  const handleCEPChange = (e) => {
+  function handleCEPChange(e) {
     const rawValue = e.target.value.replace(/\D/g, "");
 
-    let formattedValue = rawValue;
-    if (rawValue.length <= 5) {
-      formattedValue = rawValue;
-    } else {
-      formattedValue = rawValue.replace(/(\d{5})(\d{0,3})/, "$1-$2");
-    }
+    setFormData(function (prev) {
+      const newData = { ...prev, cep: rawValue };
 
-    setFormData((prev) => ({
-      ...prev,
-      cep: rawValue,
-    }));
+      // Busca endereço quando completar 8 dígitos
+      if (rawValue.length === 8) {
+        buscarEnderecoPorCep(rawValue);
+      }
+
+      return newData;
+    });
 
     if (errors.cep) {
-      setErrors((prev) => ({ ...prev, cep: "" }));
+      setErrors(function (prev) {
+        return { ...prev, cep: "" };
+      });
     }
-  };
+  }
+
+  async function buscarEnderecoPorCep(cep) {
+    const resultado = await buscarCep(cep);
+
+    if (resultado) {
+      setFormData(function (prev) {
+        return {
+          ...prev,
+          endereco: resultado.logradouro || prev.endereco,
+          complemento: resultado.complemento || prev.complemento,
+          // Adicione estado/cidade se tiver esses campos no formulário
+        };
+      });
+    }
+  }
 
   const getPhoneDisplay = () => {
     const value = formData.telefone;

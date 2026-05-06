@@ -2,12 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { useToast } from "../components/Toast";
+import { useCep } from "../hooks/useCep";
 
 function Checkout() {
   const [totalConfirmado, setTotalConfirmado] = useState(0);
   const [formaPagamentoConfirmada, setFormaPagamentoConfirmada] = useState("");
   const navigate = useNavigate();
   const { addToast } = useToast();
+  const {
+    buscarCep,
+    loading: loadingCep,
+    erro: erroCep,
+    setErro: setErroCep,
+  } = useCep();
   const {
     carrinho,
     getSubtotal,
@@ -177,9 +184,34 @@ function Checkout() {
 
   function handleEnderecoChange(e) {
     const { name, value } = e.target;
+
     setEndereco(function (prev) {
       return { ...prev, [name]: value };
     });
+
+    if (name === "cep") {
+      const cepLimpo = value.replace(/\D/g, "");
+      if (cepLimpo.length === 8) {
+        buscarEnderecoPorCep(cepLimpo);
+      }
+    }
+  }
+
+  async function buscarEnderecoPorCep(cep) {
+    const resultado = await buscarCep(cep);
+
+    if (resultado) {
+      setEndereco(function (prev) {
+        return {
+          ...prev,
+          rua: resultado.logradouro || prev.rua,
+          bairro: resultado.bairro || prev.bairro,
+          cidade: resultado.cidade || prev.cidade,
+          estado: resultado.estado || prev.estado,
+          complemento: resultado.complemento || prev.complemento,
+        };
+      });
+    }
   }
 
   function handleCartaoChange(e) {
@@ -501,15 +533,40 @@ function Checkout() {
                 <label style={{ color: "#555", fontSize: "0.9rem" }}>
                   CEP *
                 </label>
-                <input
-                  name="cep"
-                  value={formatarCEP(endereco.cep)}
-                  onChange={handleEnderecoChange}
-                  maxLength={9}
-                  style={inputStyle}
-                  placeholder="00000-000"
-                />
+                <div style={{ position: "relative" }}>
+                  <input
+                    name="cep"
+                    value={formatarCEP(endereco.cep)}
+                    onChange={handleEnderecoChange}
+                    maxLength={9}
+                    style={{
+                      ...inputStyle,
+                      paddingRight: loadingCep ? "40px" : "12px",
+                    }}
+                    placeholder="00000-000"
+                  />
+                  {loadingCep && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        right: "12px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        fontSize: "1rem",
+                        animation: "spin 1s linear infinite",
+                      }}
+                    >
+                      ⏳
+                    </span>
+                  )}
+                </div>
+                {erroCep && (
+                  <span style={{ color: "#e65100", fontSize: "0.8rem" }}>
+                    ⚠️ {erroCep}
+                  </span>
+                )}
               </div>
+
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >

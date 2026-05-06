@@ -59,33 +59,25 @@ function Navbar() {
         </div>
 
         <ul className={`navbar__menu ${menuAberto ? "active" : ""}`}>
-          {/* Botão Loja */}
-          <li className="navbar__item">
-            <Link to="/loja" className="navbar__links" onClick={fecharMenu}>
-              🏪 Loja
-            </Link>
-          </li>
-          {/* Carrinho */}
+          {/* Carrinho - sempre visível */}
           <li className="navbar__item">
             <Link to="/carrinho" className="navbar__links" onClick={fecharMenu}>
               🛒 Carrinho
-              {quantidadeItens > 0 && (
-                <span
-                  style={{
-                    background: "#ff0844",
-                    color: "white",
-                    borderRadius: "50%",
-                    padding: "2px 7px",
-                    fontSize: "0.7rem",
-                    marginLeft: "5px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {quantidadeItens}
-                </span>
-              )}
             </Link>
           </li>
+
+          {/* Rastreio - só logado */}
+          {usuario && (
+            <li className="navbar__item">
+              <Link
+                to="/rastreio"
+                className="navbar__links"
+                onClick={fecharMenu}
+              >
+                📦 Rastreio
+              </Link>
+            </li>
+          )}
 
           {/* Perfil (só aparece se estiver logado) */}
           {usuario && (

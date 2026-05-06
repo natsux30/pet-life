@@ -6,6 +6,7 @@ import { useToast } from "../components/Toast";
 function Carrinho() {
   const navigate = useNavigate();
   const {
+    usuario,
     carrinho,
     removerDoCarrinho,
     atualizarQuantidade,
@@ -70,6 +71,58 @@ function Carrinho() {
     const numbers = value.replace(/\D/g, "");
     if (numbers.length <= 5) return numbers;
     return numbers.replace(/(\d{5})(\d{0,3})/, "$1-$2");
+  }
+  // Se não estiver logado e tentar finalizar compra
+  function handleFinalizarCompra() {
+    if (!usuario) {
+      addToast("🔒 Faça login para finalizar a compra", "warning");
+      navigate("/login");
+      return;
+    }
+    navigate("/checkout");
+  }
+  // Mostrar aviso no carrinho se não estiver logado
+  if (!usuario && carrinho.length > 0) {
+    return (
+      <div
+        style={
+          {
+            /* ... */
+          }
+        }
+      >
+        {/* Conteúdo do carrinho */}
+        <div
+          style={{
+            background: "#fff3e0",
+            padding: "15px",
+            borderRadius: "10px",
+            marginBottom: "20px",
+            border: "1px solid #ffcc80",
+          }}
+        >
+          <p style={{ margin: 0, color: "#e65100" }}>
+            ⚠️ Você precisa estar logado para finalizar a compra.
+          </p>
+          <Link to="/login">
+            <button
+              style={{
+                background: "#667eea",
+                color: "white",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            >
+              Fazer Login
+            </button>
+          </Link>
+        </div>
+        {/* ... resto do carrinho */}
+      </div>
+    );
   }
 
   // Carrinho vazio
