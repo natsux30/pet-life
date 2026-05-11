@@ -232,7 +232,7 @@ function CadastroPet() {
     porte: "",
     idade: "",
     peso: "",
-    comportamento: "", // ← Novo campo
+    comportamento: "",
     alergias: "",
     observacoes: "",
   });

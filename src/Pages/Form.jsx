@@ -1,6 +1,6 @@
 import { useState } from "react";
 
- function Formulario() {
+function Formulario() {
   const [dados, setDados] = useState({
     nome: "",
     email: "",
@@ -12,9 +12,9 @@ import { useState } from "react";
   }
 
   function handleSubmit(e) {
-    e.preventDefault(); // impede reload da página
+    e.preventDefault();
     console.log(dados);
-    alert("Formulário enviado!");
+    alert("FormulÃ¡rio enviado!");
   }
 
   return (
@@ -30,7 +30,8 @@ import { useState } from "react";
           onChange={handleChange}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
           type="email"
@@ -40,11 +41,12 @@ import { useState } from "react";
           onChange={handleChange}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <button type="submit">Enviar</button>
       </form>
     </div>
   );
 }
-export default Formulario
+export default Formulario;

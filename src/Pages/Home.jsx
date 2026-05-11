@@ -141,49 +141,6 @@ function Home() {
         "atóxico",
       ],
     },
-    {
-      id: 11,
-      title: "Frisbee Flexível",
-      price: 39.9,
-      image:
-        "https://images.pexels.com/photos/4459795/pexels-photo-4459795.png",
-      images: [
-        "https://images.pexels.com/photos/4459795/pexels-photo-4459795.png",
-        "https://images.pexels.com/photos/16730620/pexels-photo-16730620.jpeg",
-      ],
-      description:
-        "Frisbee flexível e seguro. Ideal para cães ativos que adoram correr e buscar.",
-      descricaoCompleta:
-        "O Frisbee Flexível foi desenvolvido especialmente para cães. Com bordas macias que não machucam a boca do pet, é perfeito para brincadeiras ao ar livre. O material flexível absorve impactos e volta ao formato original. Disponível em cores vibrantes fáceis de localizar na grama.",
-      categoria: "caes",
-      porte: "grande",
-      idade: "adulto",
-      material: "borracha",
-      finalidade: "exercicio",
-      comportamentosIndicados: [
-        "Agitado",
-        "Brincalhão",
-        "Energético",
-        "Protetor",
-      ],
-      contraindicadoAlergias: ["Borracha", "Látex"],
-      destaque: false,
-      estoque: 35,
-      avaliacao: 4.7,
-      numAvaliacoes: 54,
-      dimensoes: "Diâmetro 25cm",
-      pesoProduto: "180g",
-      garantia: "2 meses",
-      origem: "Brasil",
-      palavrasChave: [
-        "frisbee",
-        "disco",
-        "flexível",
-        "cachorro",
-        "lançar",
-        "correr",
-      ],
-    },
   ];
 
   const beneficios = [
@@ -241,21 +198,32 @@ function Home() {
 
   return (
     <div>
-      {/* ========== HERO SECTION ========== */}
+      {/* HERO SECTION*/}
       <div
         style={{
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          background: "whitesmoke",
           padding: "80px 20px",
           textAlign: "center",
           color: "white",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <div
+          style={{
+            maxWidth: "800px",
+            margin: "0 auto",
+            border: "3px solid green",
+            borderRadius: "35px",
+            backgroundColor: "#ffffff",
+            padding: "40px 20px",
+          }}
+        >
           <h1
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              marginBottom: "20px",
+              paddingBottom: "20px",
               fontWeight: "bold",
+              backgroundColor: "#FFFFFF",
+              color: "green",
             }}
           >
             🐾 Pets-LifeStyle
@@ -263,8 +231,9 @@ function Home() {
           <p
             style={{
               fontSize: "clamp(1rem, 3vw, 1.5rem)",
-              marginBottom: "30px",
-              opacity: "0.9",
+              paddingBottom: "30px",
+              backgroundColor: "#FFFFFF",
+              color: "green",
             }}
           >
             Os melhores brinquedos para seu melhor amigo!
@@ -277,16 +246,17 @@ function Home() {
               gap: "15px",
               justifyContent: "center",
               flexWrap: "wrap",
+              backgroundColor: "#ffffff",
             }}
           >
             <Link to="/cadastro">
               <button
                 style={{
-                  background: "white",
-                  color: "#667eea",
-                  border: "none",
+                  backgroundColor: "white",
+                  color: "green",
+                  border: "solid 2px green ",
                   padding: "15px 35px",
-                  borderRadius: "50px",
+                  // borderRadius: "50px",
                   fontSize: "1.1rem",
                   fontWeight: "bold",
                   cursor: "pointer",
@@ -303,7 +273,7 @@ function Home() {
                   color: "white",
                   border: "2px solid white",
                   padding: "15px 35px",
-                  borderRadius: "50px",
+                  // borderRadius: "50px",
                   fontSize: "1.1rem",
                   fontWeight: "bold",
                   cursor: "pointer",
@@ -317,10 +287,10 @@ function Home() {
         </div>
       </div>
 
-      {/* ========== BENEFÍCIOS ========== */}
+      {/*BENEFÍCIOS */}
       <div
         style={{
-          background: "#f8f9fa",
+          background: "whitesmoke",
           padding: "60px 20px",
         }}
       >
@@ -331,6 +301,7 @@ function Home() {
             gap: "30px",
             maxWidth: "1000px",
             margin: "0 auto",
+            backgroundColor: "transparent",
           }}
         >
           {beneficios.map(function (beneficio, index) {
@@ -340,7 +311,7 @@ function Home() {
                 style={{
                   textAlign: "center",
                   padding: "30px 20px",
-                  background: "white",
+                  background: "green",
                   borderRadius: "15px",
                   boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
                   transition: "transform 0.3s",
@@ -349,10 +320,10 @@ function Home() {
                 <div style={{ fontSize: "3rem", marginBottom: "15px" }}>
                   {beneficio.icone}
                 </div>
-                <h3 style={{ color: "#333", marginBottom: "10px" }}>
+                <h3 style={{ color: "whitesmoke", marginBottom: "10px" }}>
                   {beneficio.titulo}
                 </h3>
-                <p style={{ color: "#666", fontSize: "0.9rem" }}>
+                <p style={{ color: "white", fontSize: "0.9rem" }}>
                   {beneficio.descricao}
                 </p>
               </div>
@@ -361,30 +332,48 @@ function Home() {
         </div>
       </div>
 
-      {/* ========== PRODUTOS EM DESTAQUE ========== */}
+      {/*RODUTOS EM DESTAQUE*/}
       <div
         id="produtos"
         style={{
           padding: "60px 20px",
-          background: "white",
+          background: "whitesmoke",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "50px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "50px",
+          }}
+        >
           <h2
             style={{
+              backgroundColor: "whitesmoke",
               fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
-              color: "#333",
-              marginBottom: "10px",
+              color: "green",
+              paddingBottom: "10px",
             }}
           >
-            🌟 Produtos em Destaque
+            Produtos em Destaque
           </h2>
-          <p style={{ color: "#666", fontSize: "1.1rem" }}>
+          <p
+            style={{
+              color: "green",
+              fontSize: "1.1rem",
+              backgroundColor: "whitesmoke",
+            }}
+          >
             Confira nossa seleção especial para seu pet
           </p>
         </div>
 
-        <div style={containerStyle}>
+        <div
+          style={{
+            ...containerStyle,
+            backgroundColor: "whitesmoke",
+            color: "#FFFFFF",
+          }}
+        >
           {products.map(function (product) {
             return (
               <ProductCard
@@ -396,17 +385,23 @@ function Home() {
                 description={product.description}
                 onAddToCart={function () {
                   handleAddToCart(product);
-                }} // ← ASSIM
+                }}
               />
             );
           })}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "40px" }}>
-          <Link to="/links">
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "40px",
+            backgroundColor: "whitesmoke",
+          }}
+        >
+          <Link to="/loja">
             <button
               style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                background: "green",
                 color: "white",
                 border: "none",
                 padding: "15px 40px",
@@ -416,16 +411,16 @@ function Home() {
                 cursor: "pointer",
               }}
             >
-              Ver Todos os Produtos →
+              Ver Todos os Produtos
             </button>
           </Link>
         </div>
       </div>
 
-      {/* ========== DEPOIMENTOS ========== */}
+      {/* DEPOIMENTOS */}
       <div
         style={{
-          background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+          background: "whitesmoke",
           padding: "60px 20px",
           color: "white",
         }}
