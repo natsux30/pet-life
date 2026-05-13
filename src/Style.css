@@ -31,8 +31,7 @@
 }
 
 #navbar__logo {
-  background-color: #ff8177;
-  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-color: #ffffff;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -76,6 +75,7 @@
 .navbar__links:hover {
   color: #ff8177;
   transition: all 0.3s ease;
+  border-radius: 50px;
 }
 
 .navbar__user-name {
@@ -102,9 +102,8 @@
   border: none;
   outline: none;
   border-radius: 20px;
-  background: #ff0844;
-  background-image: linear-gradient(to right, #ff0844 0%, #ffb199 100%);
-  color: #fff;
+  background: #ffffff;
+  color: #008000;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -120,14 +119,13 @@
 .button--outline {
   background: transparent;
   background-image: none;
-  border: 2px solid #ff0844;
-  color: #ff0844;
+  border: 2px solid #ffffff;
+  color: #ffffff;
 }
 
 .button--outline:hover {
-  background: #ff0844;
-  background-image: linear-gradient(to right, #ff0844 0%, #ffb199 100%);
-  color: #fff;
+  background: #fff;
+  color: #008000;
   border: 2px solid transparent;
 }
 

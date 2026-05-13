@@ -163,7 +163,6 @@ const Cadastro = () => {
           ...prev,
           endereco: resultado.logradouro || prev.endereco,
           complemento: resultado.complemento || prev.complemento,
-          // Adicione estado/cidade se tiver esses campos no formulário
         };
       });
     }
@@ -189,13 +188,13 @@ const Cadastro = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "whitesmoke",
         padding: "20px",
       }}
     >
       <div
         style={{
-          background: "white",
+          background: "#008000",
           borderRadius: "20px",
           padding: "40px",
           width: "100%",
@@ -205,10 +204,10 @@ const Cadastro = () => {
       >
         <div style={{ textAlign: "center", marginBottom: "30px" }}>
           <div style={{ fontSize: "48px", marginBottom: "15px" }}>🐾</div>
-          <h1 style={{ color: "#333", margin: "0", fontSize: "28px" }}>
+          <h1 style={{ color: "#ffffff", margin: "0", fontSize: "28px" }}>
             Criar Conta
           </h1>
-          <p style={{ color: "#666", marginTop: "10px" }}>
+          <p style={{ color: "#fff", marginTop: "10px" }}>
             Cadastre-se e comece a mimar seu pet!
           </p>
         </div>
@@ -235,11 +234,11 @@ const Cadastro = () => {
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
-                background: step >= 1 ? "#667eea" : "#e0e0e0",
+                background: step >= 1 ? "#ffffff" : "#e0e0e0",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "white",
+                color: "#008000",
                 fontWeight: "bold",
                 fontSize: "14px",
               }}
@@ -249,7 +248,7 @@ const Cadastro = () => {
             <span
               style={{
                 fontSize: "12px",
-                color: step >= 1 ? "#667eea" : "#999",
+                color: step >= 1 ? "#ffffff" : "#999",
               }}
             >
               Dados Pessoais
@@ -271,11 +270,11 @@ const Cadastro = () => {
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
-                background: step >= 2 ? "#667eea" : "#e0e0e0",
+                background: step >= 2 ? "#ffffff" : "#e0e0e0",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "white",
+                color: "#008000",
                 fontWeight: "bold",
                 fontSize: "14px",
               }}
@@ -285,7 +284,7 @@ const Cadastro = () => {
             <span
               style={{
                 fontSize: "12px",
-                color: step >= 2 ? "#667eea" : "#999",
+                color: step >= 2 ? "#ffffff" : "#999",
               }}
             >
               Endereço
@@ -318,7 +317,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Nome completo
                 </label>
@@ -348,7 +347,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Email
                 </label>
@@ -378,7 +377,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Senha
                 </label>
@@ -408,7 +407,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Confirmar senha
                 </label>
@@ -438,9 +437,8 @@ const Cadastro = () => {
                 type="button"
                 onClick={handleNextStep}
                 style={{
-                  background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                  color: "white",
+                  background: "white",
+                  color: "#008000",
                   border: "none",
                   padding: "14px",
                   borderRadius: "10px",
@@ -459,7 +457,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Telefone
                 </label>
@@ -490,7 +488,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   CEP
                 </label>
@@ -528,7 +526,7 @@ const Cadastro = () => {
                 >
                   <label
                     style={{
-                      color: "#555",
+                      color: "#fff",
                       fontSize: "14px",
                       fontWeight: "500",
                     }}
@@ -567,7 +565,7 @@ const Cadastro = () => {
                 >
                   <label
                     style={{
-                      color: "#555",
+                      color: "#fff",
                       fontSize: "14px",
                       fontWeight: "500",
                     }}
@@ -601,7 +599,7 @@ const Cadastro = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Complemento
                 </label>
@@ -643,9 +641,8 @@ const Cadastro = () => {
                   type="submit"
                   disabled={loading}
                   style={{
-                    background:
-                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    color: "white",
+                    background: "#fff",
+                    color: "#008000",
                     border: "none",
                     padding: "14px",
                     borderRadius: "10px",
@@ -665,7 +662,7 @@ const Cadastro = () => {
           <p
             style={{
               textAlign: "center",
-              color: "#666",
+              color: "#fff",
               fontSize: "14px",
               margin: "0",
             }}
@@ -674,7 +671,7 @@ const Cadastro = () => {
             <Link
               to="/login"
               style={{
-                color: "#667eea",
+                color: "#062b92",
                 textDecoration: "none",
                 fontWeight: "500",
               }}

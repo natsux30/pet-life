@@ -211,7 +211,7 @@ function Home() {
           style={{
             maxWidth: "800px",
             margin: "0 auto",
-            border: "3px solid green",
+            border: "3px solid #008000",
             borderRadius: "35px",
             backgroundColor: "#ffffff",
             padding: "40px 20px",
@@ -223,7 +223,7 @@ function Home() {
               paddingBottom: "20px",
               fontWeight: "bold",
               backgroundColor: "#FFFFFF",
-              color: "green",
+              color: "#008000",
             }}
           >
             🐾 Pets-LifeStyle
@@ -233,7 +233,7 @@ function Home() {
               fontSize: "clamp(1rem, 3vw, 1.5rem)",
               paddingBottom: "30px",
               backgroundColor: "#FFFFFF",
-              color: "green",
+              color: "#008000",
             }}
           >
             Os melhores brinquedos para seu melhor amigo!
@@ -253,8 +253,8 @@ function Home() {
               <button
                 style={{
                   backgroundColor: "white",
-                  color: "green",
-                  border: "solid 2px green ",
+                  color: "#008000",
+                  border: "solid 2px #008000 ",
                   padding: "15px 35px",
                   // borderRadius: "50px",
                   fontSize: "1.1rem",
@@ -311,7 +311,7 @@ function Home() {
                 style={{
                   textAlign: "center",
                   padding: "30px 20px",
-                  background: "green",
+                  background: "#008000",
                   borderRadius: "15px",
                   boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
                   transition: "transform 0.3s",
@@ -350,7 +350,7 @@ function Home() {
             style={{
               backgroundColor: "whitesmoke",
               fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
-              color: "green",
+              color: "#008000",
               paddingBottom: "10px",
             }}
           >
@@ -358,7 +358,7 @@ function Home() {
           </h2>
           <p
             style={{
-              color: "green",
+              color: "#008000",
               fontSize: "1.1rem",
               backgroundColor: "whitesmoke",
             }}
@@ -401,7 +401,7 @@ function Home() {
           <Link to="/loja">
             <button
               style={{
-                background: "green",
+                background: "#008000",
                 color: "white",
                 border: "none",
                 padding: "15px 40px",
@@ -430,14 +430,17 @@ function Home() {
             style={{
               fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
               marginBottom: "10px",
+              backgroundColor: "whitesmoke",
+              color: "#008000",
             }}
           >
-            💬 O que dizem nossos clientes
+            O que dizem nossos clientes
           </h2>
         </div>
 
         <div
           style={{
+            backgroundColor: "whitesmoke",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "30px",
@@ -450,18 +453,26 @@ function Home() {
               <div
                 key={index}
                 style={{
-                  background: "rgba(255,255,255,0.1)",
+                  background: "whitesmoke",
                   backdropFilter: "blur(10px)",
                   padding: "30px",
                   borderRadius: "15px",
-                  border: "1px solid rgba(255,255,255,0.2)",
+                  border: "3px solid #008000",
                 }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "10px" }}>
+                <div
+                  style={{
+                    fontSize: "2rem",
+                    marginBottom: "10px",
+                    backgroundColor: "transparent",
+                  }}
+                >
                   {"⭐".repeat(depoimento.estrelas)}
                 </div>
                 <p
                   style={{
+                    backgroundColor: "transparent",
+                    color: "#008000",
                     fontSize: "1rem",
                     lineHeight: "1.6",
                     marginBottom: "20px",
@@ -470,9 +481,21 @@ function Home() {
                 >
                   "{depoimento.texto}"
                 </p>
-                <div>
-                  <strong>{depoimento.nome}</strong>
-                  <span style={{ marginLeft: "10px" }}>{depoimento.pet}</span>
+                <div style={{ backgroundColor: "transparent" }}>
+                  <strong
+                    style={{ backgroundColor: "transparent", color: "#008000" }}
+                  >
+                    {depoimento.nome}
+                  </strong>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      backgroundColor: "transparent",
+                      color: "#008000",
+                    }}
+                  >
+                    {depoimento.pet}
+                  </span>
                 </div>
               </div>
             );
@@ -480,10 +503,10 @@ function Home() {
         </div>
       </div>
 
-      {/* ========== CTA FINAL ========== */}
+      {/* CTA */}
       <div
         style={{
-          background: "#131313",
+          background: "#008000",
           padding: "80px 20px",
           textAlign: "center",
           color: "white",
@@ -496,7 +519,7 @@ function Home() {
               marginBottom: "20px",
             }}
           >
-            🎉 Pronto para mimar seu pet?
+            Pronto para mimar seu pet?
           </h2>
           <p
             style={{
@@ -511,8 +534,8 @@ function Home() {
             <button
               style={{
                 background:
-                  "linear-gradient(to right, #ff0844 0%, #ffb199 100%)",
-                color: "white",
+                  "whitesmoke",
+                color: "#008000",
                 border: "none",
                 padding: "15px 50px",
                 borderRadius: "50px",
@@ -528,10 +551,10 @@ function Home() {
         </div>
       </div>
 
-      {/* ========== FOOTER SIMPLES ========== */}
+      {/* FOOTER */}
       <footer
         style={{
-          background: "#0a0a0a",
+          background: "#008000",
           color: "#999",
           padding: "30px 20px",
           textAlign: "center",

@@ -24,7 +24,8 @@ function Perfil() {
           <Link to="/login">
             <button
               style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                backgroundColor:
+                  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                 color: "white",
                 border: "none",
                 padding: "12px 30px",
@@ -65,12 +66,20 @@ function Perfil() {
   }
 
   return (
-    <div style={{ background: "#f5f5f5", minHeight: "100vh", padding: "20px" }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+    <div
+      style={{ background: "whitesmoke", minHeight: "100vh", padding: "20px" }}
+    >
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+          backgroundColor: "transparent",
+        }}
+      >
         {/* Cabeçalho */}
         <div
           style={{
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            backgroundColor: "white",
             borderRadius: "20px",
             padding: "30px",
             color: "white",
@@ -80,11 +89,29 @@ function Perfil() {
             alignItems: "center",
           }}
         >
-          <div>
-            <h1 style={{ margin: "0 0 10px 0", fontSize: "28px" }}>
+          <div
+            style={{
+              backgroundColor: "#fff",
+            }}
+          >
+            <h1
+              style={{
+                margin: "0 0 10px 0",
+                fontSize: "28px",
+                backgroundColor: "#fff",
+                color: "#008000",
+              }}
+            >
               👤 {usuario.nome}
             </h1>
-            <p style={{ margin: "0", opacity: "0.9" }}>
+            <p
+              style={{
+                margin: "0",
+                opacity: "0.9",
+                backgroundColor: "#fff",
+                color: "#008000",
+              }}
+            >
               Membro desde {usuario.dataCadastro}
             </p>
           </div>
@@ -109,6 +136,7 @@ function Perfil() {
 
         <div
           style={{
+            backgroundColor: "transparent",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "20px",
@@ -125,29 +153,53 @@ function Perfil() {
           >
             <div
               style={{
+                background: "white",
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
                 marginBottom: "20px",
               }}
             >
-              <span style={{ fontSize: "24px" }}>📋</span>
-              <h2 style={{ margin: 0, color: "#333", fontSize: "20px" }}>
+              <h2
+                style={{
+                  margin: 0,
+                  color: "#333",
+                  fontSize: "20px",
+                  background: "white",
+                }}
+              >
                 Dados Pessoais
               </h2>
             </div>
 
             <div
-              style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "15px",
+                background: "white",
+              }}
             >
               <div>
                 <label
-                  style={{ color: "#999", fontSize: "12px", display: "block" }}
+                  style={{
+                    color: "#999",
+                    fontSize: "12px",
+                    display: "block",
+                    background: "white",
+                  }}
                 >
                   Email
                 </label>
-                <p style={{ margin: "5px 0", color: "#333", fontSize: "16px" }}>
-                  📧 {usuario.email}
+                <p
+                  style={{
+                    padding: "5px 0",
+                    color: "#333",
+                    fontSize: "16px",
+                    background: "white",
+                  }}
+                >
+                  {usuario.email}
                 </p>
               </div>
 
@@ -158,14 +210,20 @@ function Perfil() {
                       color: "#999",
                       fontSize: "12px",
                       display: "block",
+                      background: "white",
                     }}
                   >
                     Telefone
                   </label>
                   <p
-                    style={{ margin: "5px 0", color: "#333", fontSize: "16px" }}
+                    style={{
+                      padding: "5px 0",
+                      color: "#333",
+                      fontSize: "16px",
+                      background: "white",
+                    }}
                   >
-                    📱 {usuario.telefone}
+                    {usuario.telefone}
                   </p>
                 </div>
               )}
@@ -227,6 +285,7 @@ function Perfil() {
           >
             <div
               style={{
+                background: "white",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -234,18 +293,28 @@ function Perfil() {
               }}
             >
               <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  background: "white",
+                }}
               >
-                <span style={{ fontSize: "24px" }}>🐾</span>
-                <h2 style={{ margin: 0, color: "#333", fontSize: "20px" }}>
+                <h2
+                  style={{
+                    margin: 0,
+                    color: "#333",
+                    fontSize: "20px",
+                    background: "white",
+                  }}
+                >
                   Meus Pets
                 </h2>
               </div>
               <Link to="/cadastro-pet">
                 <button
                   style={{
-                    background:
-                      "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                    backgroundColor: "#008000",
                     color: "white",
                     border: "none",
                     padding: "8px 15px",
@@ -264,16 +333,26 @@ function Perfil() {
                 style={{
                   textAlign: "center",
                   padding: "40px 0",
+                  background: "white",
                   color: "#999",
                 }}
               >
-                <div style={{ fontSize: "48px", marginBottom: "15px" }}>🐱</div>
-                <p>Nenhum pet cadastrado ainda</p>
+                <div
+                  style={{
+                    fontSize: "48px",
+                    marginBottom: "15px",
+                    background: "white",
+                  }}
+                >
+                  🐱
+                </div>
+                <p style={{ background: "white" }}>
+                  Nenhum pet cadastrado ainda
+                </p>
                 <Link to="/cadastro-pet">
                   <button
                     style={{
-                      background:
-                        "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                      background: "#008000",
                       color: "white",
                       border: "none",
                       padding: "10px 25px",

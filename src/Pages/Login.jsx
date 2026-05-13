@@ -1,61 +1,60 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useApp } from '../context/AppContext'; // ← Adicione esta linha
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useApp } from "../context/AppContext";
 
 function Login() {
   const navigate = useNavigate();
-  const { loginUser } = useApp(); // ← Adicione esta linha
-  
+  const { loginUser } = useApp();
+
   const [formData, setFormData] = useState({
-    email: '',
-    senha: ''
+    email: "",
+    senha: "",
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   function validateForm() {
     const newErrors = {};
-    
+
     if (!formData.email) {
-      newErrors.email = 'Email é obrigatório';
+      newErrors.email = "Email é obrigatório";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email inválido';
+      newErrors.email = "Email inválido";
     }
-    
+
     if (!formData.senha) {
-      newErrors.senha = 'Senha é obrigatória';
+      newErrors.senha = "Senha é obrigatória";
     } else if (formData.senha.length < 6) {
-      newErrors.senha = 'Senha deve ter no mínimo 6 caracteres';
+      newErrors.senha = "Senha deve ter no mínimo 6 caracteres";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setLoading(true);
-    
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Salva os dados do usuário no contexto
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Salva os dados do usuário
       const userData = {
         id: 1,
-        nome: 'Usuário Pet',
+        nome: "Usuário Pet",
         email: formData.email,
-        telefone: '(11) 99999-9999',
-        dataCadastro: new Date().toLocaleDateString('pt-BR')
+        telefone: "(11) 99999-9999",
+        dataCadastro: new Date().toLocaleDateString("pt-BR"),
       };
-      
-      loginUser(userData); // ← Agora está definido
-      navigate('/perfil');
-      
+
+      loginUser(userData);
+      navigate("/perfil");
     } catch (error) {
-      setErrors({ geral: 'Email ou senha incorretos' });
+      setErrors({ geral: "Email ou senha incorretos" });
     } finally {
       setLoading(false);
     }
@@ -63,57 +62,91 @@ function Login() {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setFormData(function(prev) {
+    setFormData(function (prev) {
       return { ...prev, [name]: value };
     });
     if (errors[name]) {
-      setErrors(function(prev) {
-        return { ...prev, [name]: '' };
+      setErrors(function (prev) {
+        return { ...prev, [name]: "" };
       });
     }
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding: '20px'
-    }}>
-      <div style={{
-        background: 'white',
-        borderRadius: '20px',
-        padding: '40px',
-        width: '100%',
-        maxWidth: '450px',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
-      }}>
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <div style={{ fontSize: '48px', marginBottom: '15px' }}>🐾</div>
-          <h1 style={{ color: '#333', margin: '0', fontSize: '28px' }}>Bem-vindo de volta!</h1>
-          <p style={{ color: '#666', marginTop: '10px' }}>Faça login para continuar comprando para seu pet</p>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "whitesmoke",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          background: "#008000",
+          borderRadius: "20px",
+          padding: "40px",
+          width: "100%",
+          maxWidth: "450px",
+          boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "30px",
+            backgroundColor: "#008000",
+            padding: "20px",
+            borderRadius: "15px",
+          }}
+        >
+          <div style={{ fontSize: "48px", marginBottom: "15px" }}>🐾</div>
+          <h1 style={{ color: "#ffffff", margin: "0", fontSize: "28px" }}>
+            Bem-vindo de volta!
+          </h1>
+          <p style={{ color: "#ffffff", marginTop: "10px" }}>
+            Faça login para continuar comprando para seu pet
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+        >
           {errors.geral && (
-            <div style={{
-              background: '#ffe0e0',
-              color: '#d63031',
-              padding: '10px',
-              borderRadius: '8px',
-              fontSize: '14px',
-              textAlign: 'center'
-            }}>
+            <div
+              style={{
+                background: "#ffe0e0",
+                color: "#d63031",
+                padding: "10px",
+                borderRadius: "8px",
+                fontSize: "14px",
+                textAlign: "center",
+              }}
+            >
               {errors.geral}
             </div>
           )}
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            <label htmlFor="email" style={{ color: '#555', fontSize: '14px', fontWeight: '500' }}>Email</label>
-            <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', fontSize: '18px' }}>📧</span>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+            <label
+              htmlFor="email"
+              style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
+            >
+              Email
+            </label>
+            <div style={{ position: "relative" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  left: "12px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  fontSize: "18px",
+                }}
+              ></span>
               <input
                 type="email"
                 id="email"
@@ -122,22 +155,39 @@ function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 style={{
-                  width: '100%',
-                  padding: '12px 12px 12px 40px',
-                  border: `2px solid ${errors.email ? '#ff4757' : '#e0e0e0'}`,
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  boxSizing: 'border-box'
+                  width: "100%",
+                  padding: "12px 12px 12px 40px",
+                  border: `2px solid ${errors.email ? "#ff4757" : "#e0e0e0"}`,
+                  borderRadius: "10px",
+                  fontSize: "14px",
+                  boxSizing: "border-box",
                 }}
               />
             </div>
-            {errors.email && <span style={{ color: '#ff4757', fontSize: '12px' }}>{errors.email}</span>}
+            {errors.email && (
+              <span style={{ color: "#ff4757", fontSize: "12px" }}>
+                {errors.email}
+              </span>
+            )}
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            <label htmlFor="senha" style={{ color: '#555', fontSize: '14px', fontWeight: '500' }}>Senha</label>
-            <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', fontSize: '18px' }}>🔒</span>
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+            <label
+              htmlFor="senha"
+              style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
+            >
+              Senha
+            </label>
+            <div style={{ position: "relative" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  left: "12px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  fontSize: "18px",
+                }}
+              ></span>
               <input
                 type="password"
                 id="senha"
@@ -146,49 +196,85 @@ function Login() {
                 value={formData.senha}
                 onChange={handleChange}
                 style={{
-                  width: '100%',
-                  padding: '12px 12px 12px 40px',
-                  border: `2px solid ${errors.senha ? '#ff4757' : '#e0e0e0'}`,
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  boxSizing: 'border-box'
+                  width: "100%",
+                  padding: "12px 12px 12px 40px",
+                  border: `2px solid ${errors.senha ? "#ff4757" : "#e0e0e0"}`,
+                  borderRadius: "10px",
+                  fontSize: "14px",
+                  boxSizing: "border-box",
                 }}
               />
             </div>
-            {errors.senha && <span style={{ color: '#ff4757', fontSize: '12px' }}>{errors.senha}</span>}
+            {errors.senha && (
+              <span style={{ color: "#ff4757", fontSize: "12px" }}>
+                {errors.senha}
+              </span>
+            )}
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '14px' }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', cursor: 'pointer' }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: "14px",
+            }}
+          >
+            <label
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "#fff",
+                cursor: "pointer",
+              }}
+            >
               <input type="checkbox" style={{ margin: 0 }} /> Lembrar-me
             </label>
-            <Link to="/recuperar-senha" style={{ color: '#667eea', textDecoration: 'none' }}>
+            <Link
+              to="/recuperar-senha"
+              style={{ color: "#062b92", textDecoration: "none" }}
+            >
               Esqueceu a senha?
             </Link>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
             style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              padding: '14px',
-              borderRadius: '10px',
-              fontSize: '16px',
-              fontWeight: '600',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              width: '100%',
-              opacity: loading ? 0.7 : 1
+              background: "#fff",
+              color: "#008000",
+              border: "none",
+              padding: "14px",
+              borderRadius: "10px",
+              fontSize: "16px",
+              fontWeight: "600",
+              cursor: loading ? "not-allowed" : "pointer",
+              width: "100%",
+              opacity: loading ? 0.7 : 1,
             }}
           >
-            {loading ? 'Entrando...' : 'Entrar'}
+            {loading ? "Entrando..." : "Entrar"}
           </button>
 
-          <p style={{ textAlign: 'center', color: '#666', fontSize: '14px', margin: '0' }}>
-            Não tem uma conta?{' '}
-            <Link to="/cadastro" style={{ color: '#667eea', textDecoration: 'none', fontWeight: '500' }}>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#fff",
+              fontSize: "14px",
+              margin: "0",
+            }}
+          >
+            Não tem uma conta?{" "}
+            <Link
+              to="/cadastro"
+              style={{
+                color: "#062b92",
+                textDecoration: "none",
+                fontWeight: "500",
+              }}
+            >
               Cadastre-se
             </Link>
           </p>
