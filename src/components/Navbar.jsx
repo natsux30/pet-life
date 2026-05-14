@@ -59,6 +59,12 @@ function Navbar() {
         </div>
 
         <ul className={`navbar__menu ${menuAberto ? "active" : ""}`}>
+          {/* Botão Loja */}
+          <li className="navbar__item">
+            <Link to="/loja" className="navbar__links" onClick={fecharMenu}>
+              🏪 Loja
+            </Link>
+          </li>
           {/* Carrinho - sempre visível */}
           <li className="navbar__item">
             <Link to="/carrinho" className="navbar__links" onClick={fecharMenu}>

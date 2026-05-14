@@ -273,7 +273,6 @@ function CadastroPet() {
         newErrors.peso = "Peso inválido (0.1-100 kg)";
       }
       if (!formData.comportamento) {
-        // ← Nova validação
         newErrors.comportamento = "Comportamento é obrigatório";
       }
     }
@@ -385,13 +384,13 @@ function CadastroPet() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        background: "whitesmoke",
         padding: "20px",
       }}
     >
       <div
         style={{
-          background: "white",
+          background: "#008000",
           borderRadius: "20px",
           padding: "40px",
           width: "100%",
@@ -401,10 +400,10 @@ function CadastroPet() {
       >
         <div style={{ textAlign: "center", marginBottom: "30px" }}>
           <div style={{ fontSize: "48px", marginBottom: "15px" }}>🐾</div>
-          <h1 style={{ color: "#333", margin: "0", fontSize: "28px" }}>
+          <h1 style={{ color: "#fff", margin: "0", fontSize: "28px" }}>
             Cadastrar Pet
           </h1>
-          <p style={{ color: "#666", marginTop: "10px" }}>
+          <p style={{ color: "#fff", marginTop: "10px" }}>
             Conte-nos sobre seu amiguinho!
           </p>
         </div>
@@ -432,11 +431,11 @@ function CadastroPet() {
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
-                background: step >= 1 ? "#f5576c" : "#e0e0e0",
+                background: step >= 1 ? "#fff" : "#e0e0e0",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "white",
+                color: "#008000",
                 fontWeight: "bold",
                 fontSize: "14px",
               }}
@@ -446,7 +445,7 @@ function CadastroPet() {
             <span
               style={{
                 fontSize: "12px",
-                color: step >= 1 ? "#f5576c" : "#999",
+                color: step >= 1 ? "#fff" : "#fff",
               }}
             >
               Informações
@@ -468,11 +467,11 @@ function CadastroPet() {
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
-                background: step >= 2 ? "#f5576c" : "#e0e0e0",
+                background: step >= 2 ? "#fff" : "#e0e0e0",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "white",
+                color: "#008000",
                 fontWeight: "bold",
                 fontSize: "14px",
               }}
@@ -482,7 +481,7 @@ function CadastroPet() {
             <span
               style={{
                 fontSize: "12px",
-                color: step >= 2 ? "#f5576c" : "#999",
+                color: step >= 2 ? "#fff" : "#fff",
               }}
             >
               Saúde
@@ -515,7 +514,7 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Nome do Pet
                 </label>
@@ -545,7 +544,7 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Tipo
                 </label>
@@ -583,13 +582,13 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Raça
                   {!formData.tipo && (
                     <span
                       style={{
-                        color: "#999",
+                        color: "#fff",
                         fontSize: "12px",
                         marginLeft: "5px",
                       }}
@@ -663,7 +662,7 @@ function CadastroPet() {
                       width: "100%",
                       boxSizing: "border-box",
                       background: "#f5f5f5",
-                      color: "#999",
+                      color: "#fff",
                     }}
                   />
                 )}
@@ -678,7 +677,7 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Porte
                 </label>
@@ -716,8 +715,8 @@ function CadastroPet() {
                 onClick={handleNextStep}
                 style={{
                   background:
-                    "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                  color: "white",
+                    "#fff",
+                  color: "#008000",
                   border: "none",
                   padding: "14px",
                   borderRadius: "10px",
@@ -743,7 +742,7 @@ function CadastroPet() {
                 >
                   <label
                     style={{
-                      color: "#555",
+                      color: "#fff",
                       fontSize: "14px",
                       fontWeight: "500",
                     }}
@@ -785,7 +784,7 @@ function CadastroPet() {
                 >
                   <label
                     style={{
-                      color: "#555",
+                      color: "#fff",
                       fontSize: "14px",
                       fontWeight: "500",
                     }}
@@ -823,7 +822,7 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Comportamento
                 </label>
@@ -864,12 +863,12 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Alergias conhecidas
                   <span
                     style={{
-                      color: "#999",
+                      color: "#fff",
                       fontSize: "12px",
                       marginLeft: "5px",
                     }}
@@ -995,7 +994,7 @@ function CadastroPet() {
                 style={{ display: "flex", flexDirection: "column", gap: "5px" }}
               >
                 <label
-                  style={{ color: "#555", fontSize: "14px", fontWeight: "500" }}
+                  style={{ color: "#fff", fontSize: "14px", fontWeight: "500" }}
                 >
                   Observações
                 </label>
@@ -1026,7 +1025,7 @@ function CadastroPet() {
                   }}
                   style={{
                     background: "#f0f0f0",
-                    color: "#333",
+                    color: "#008000",
                     border: "none",
                     padding: "14px",
                     borderRadius: "10px",
@@ -1042,8 +1041,8 @@ function CadastroPet() {
                   disabled={loading}
                   style={{
                     background:
-                      "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                    color: "white",
+                      "#fff",
+                    color: "#008000",
                     border: "none",
                     padding: "14px",
                     borderRadius: "10px",

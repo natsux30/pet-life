@@ -256,7 +256,7 @@ function Home() {
                   color: "#008000",
                   border: "solid 2px #008000 ",
                   padding: "15px 35px",
-                  // borderRadius: "50px",
+                  borderRadius: "50px",
                   fontSize: "1.1rem",
                   fontWeight: "bold",
                   cursor: "pointer",
@@ -269,11 +269,11 @@ function Home() {
             <a href="/loja">
               <button
                 style={{
-                  background: "transparent",
+                  background: "#008000",
                   color: "white",
                   border: "2px solid white",
                   padding: "15px 35px",
-                  // borderRadius: "50px",
+                  borderRadius: "50px",
                   fontSize: "1.1rem",
                   fontWeight: "bold",
                   cursor: "pointer",

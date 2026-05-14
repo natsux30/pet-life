@@ -159,16 +159,17 @@ function Loja() {
 
   const estilo = {
     container: {
-      background: "#f5f5f5",
+      backgroundColor: "whitesmoke",
       minHeight: "100vh",
     },
     header: {
-      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      background: "whitesmoke",
       padding: "40px 20px",
       textAlign: "center",
       color: "white",
     },
     content: {
+      backgroundColor: "whitesmoke",
       maxWidth: "1200px",
       margin: "0 auto",
       padding: "20px",
@@ -181,6 +182,7 @@ function Loja() {
       boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
     },
     inputBusca: {
+      backgroundColor: "whitesmoke",
       width: "100%",
       padding: "15px 15px 15px 45px",
       border: "2px solid #e0e0e0",
@@ -193,8 +195,8 @@ function Loja() {
       return {
         padding: "10px 20px",
         borderRadius: "25px",
-        border: ativo ? "2px solid #667eea" : "2px solid #e0e0e0",
-        background: ativo ? "#667eea" : "white",
+        border: ativo ? "2px solid #008000" : "2px solid #e0e0e0",
+        background: ativo ? "#008000" : "white",
         color: ativo ? "white" : "#333",
         cursor: "pointer",
         fontSize: "0.9rem",
@@ -206,9 +208,9 @@ function Loja() {
       return {
         padding: "8px 15px",
         borderRadius: "20px",
-        border: ativo ? "2px solid #667eea" : "1px solid #e0e0e0",
+        border: ativo ? "2px solid #008000" : "1px solid #e0e0e0",
         background: ativo ? "#f0f0ff" : "white",
-        color: ativo ? "#667eea" : "#666",
+        color: ativo ? "#008000" : "#666",
         cursor: "pointer",
         fontSize: "0.85rem",
         transition: "all 0.3s",
@@ -258,13 +260,27 @@ function Loja() {
   };
 
   return (
-    <div style={estilo.container}>
+    <div style={{ ...estilo.container, backgroundColor: "whitesmoke" }}>
       {/* Header da Loja */}
       <div style={estilo.header}>
-        <h1 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
+        <h1
+          style={{
+            fontSize: "2.5rem",
+            marginBottom: "10px",
+            backgroundColor: "whitesmoke",
+            color: "#008000",
+          }}
+        >
           🏪 Nossa Loja
         </h1>
-        <p style={{ fontSize: "1.1rem", opacity: "0.9" }}>
+        <p
+          style={{
+            fontSize: "1.1rem",
+            opacity: "0.9",
+            backgroundColor: "whitesmoke",
+            color: "#008000",
+          }}
+        >
           Encontre o brinquedo perfeito para seu pet
         </p>
       </div>
@@ -272,9 +288,13 @@ function Loja() {
       <div style={estilo.content}>
         {/* Barra de Busca Inteligente */}
         <div style={estilo.cardBranco}>
-          <div style={{ position: "relative" }} ref={sugestoesRef}>
+          <div
+            style={{ position: "relative", backgroundColor: "whitesmoke" }}
+            ref={sugestoesRef}
+          >
             <span
               style={{
+                backgroundColor: "whitesmoke",
                 position: "absolute",
                 left: "15px",
                 top: "50%",
@@ -294,7 +314,7 @@ function Loja() {
               onFocus={function () {
                 if (busca.length > 0) setMostrarSugestoes(true);
               }}
-              style={estilo.inputBusca}
+              style={{ ...estilo.inputBusca, backgroundColor: "whitesmoke" }}
             />
 
             {/* Sugestões automáticas */}
@@ -354,7 +374,7 @@ function Loja() {
               setFiltrosAbertos(!filtrosAbertos);
             }}
             style={{
-              background: filtrosAbertos ? "#667eea" : "#f0f0f0",
+              background: filtrosAbertos ? "#008000" : "#f0f0f0",
               color: filtrosAbertos ? "white" : "#333",
               border: "none",
               padding: "10px 20px",
@@ -555,6 +575,7 @@ function Loja() {
         <div
           style={{
             ...estilo.cardBranco,
+            backgroundColor: "#fff",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -562,7 +583,13 @@ function Loja() {
             gap: "10px",
           }}
         >
-          <div style={{ color: "#666", fontSize: "0.9rem" }}>
+          <div
+            style={{
+              backgroundColor: "#fff",
+              color: "#666",
+              fontSize: "0.9rem",
+            }}
+          >
             <strong>{produtosFiltrados.length}</strong> produto(s) encontrado(s)
           </div>
           <select
@@ -584,15 +611,16 @@ function Loja() {
         {pets.length > 0 && (
           <div
             style={{
-              background: "linear-gradient(135deg, #fff5f5 0%, #f0f0ff 100%)",
+              background: "whitesmoke",
               borderRadius: "20px",
               padding: "30px",
               marginBottom: "30px",
-              border: "2px solid #e0e0ff",
+              // border: "2px solid #e0e0ff",
             }}
           >
             <div
               style={{
+                background: "whitesmoke",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -602,14 +630,22 @@ function Loja() {
               <div>
                 <h2
                   style={{
-                    margin: "0 0 5px 0",
+                    background: "whitesmoke",
+                    padding: "0 0 5px 0",
                     color: "#333",
                     fontSize: "1.5rem",
                   }}
                 >
-                  🎯 Recomendado para seus Pets
+                  Recomendado para seus Pets
                 </h2>
-                <p style={{ margin: 0, color: "#666", fontSize: "0.9rem" }}>
+                <p
+                  style={{
+                    margin: 0,
+                    background: "whitesmoke",
+                    color: "#666",
+                    fontSize: "0.9rem",
+                  }}
+                >
                   Selecionamos produtos ideais para{" "}
                   {pets.length > 1 ? "seus pets" : "seu pet"}
                   com base no perfil e comportamento
@@ -618,7 +654,8 @@ function Loja() {
               <Link
                 to="/perfil"
                 style={{
-                  color: "#667eea",
+                  background: "whitesmoke",
+                  color: "#008000",
                   textDecoration: "none",
                   fontSize: "0.9rem",
                   fontWeight: "500",
@@ -631,6 +668,7 @@ function Loja() {
             {/* Cards dos Pets com Recomendações */}
             <div
               style={{
+                background: "whitesmoke",
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
                 gap: "20px",
@@ -670,6 +708,7 @@ function Loja() {
                     {/* Info do Pet */}
                     <div
                       style={{
+                        background: "#fff",
                         display: "flex",
                         alignItems: "center",
                         gap: "10px",
@@ -683,8 +722,7 @@ function Loja() {
                           width: "45px",
                           height: "45px",
                           borderRadius: "50%",
-                          background:
-                            "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                          background: "#fff",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
@@ -694,12 +732,20 @@ function Loja() {
                         {tipoEmoji[pet.tipo] || "🐾"}
                       </div>
                       <div>
-                        <strong style={{ color: "#333", fontSize: "1rem" }}>
+                        <strong
+                          style={{
+                            paddingTop: "3px",
+                            backgroundColor: "#fff",
+                            color: "#333",
+                            fontSize: "1rem",
+                          }}
+                        >
                           Para {pet.nomePet}
                         </strong>
                         <p
                           style={{
-                            margin: "3px 0 0 0",
+                            background: "#fff",
+                            padding: "3px 0 0 0",
                             color: "#999",
                             fontSize: "0.8rem",
                           }}
@@ -731,6 +777,7 @@ function Loja() {
                     {pet.alergias && (
                       <div
                         style={{
+                          background: "#fff",
                           display: "flex",
                           gap: "4px",
                           flexWrap: "wrap",
@@ -759,6 +806,7 @@ function Loja() {
                     {/* Produtos Recomendados */}
                     <div
                       style={{
+                        background: "#fff",
                         display: "grid",
                         gridTemplateColumns: "1fr 1fr",
                         gap: "10px",
@@ -775,14 +823,14 @@ function Loja() {
                               textAlign: "center",
                               cursor: "pointer",
                               transition: "all 0.3s",
-                              background: "white",
+                              background: "whitesmoke",
                             }}
                             onMouseEnter={function (e) {
                               e.currentTarget.style.transform =
                                 "translateY(-3px)";
                               e.currentTarget.style.boxShadow =
                                 "0 8px 25px rgba(0,0,0,0.15)";
-                              e.currentTarget.style.borderColor = "#667eea";
+                              e.currentTarget.style.borderColor = "#008000";
                             }}
                             onMouseLeave={function (e) {
                               e.currentTarget.style.transform = "translateY(0)";
@@ -803,6 +851,7 @@ function Loja() {
                             />
                             <h4
                               style={{
+                                background: "whitesmoke",
                                 margin: "0 0 5px 0",
                                 fontSize: "0.8rem",
                                 color: "#333",
@@ -812,7 +861,12 @@ function Loja() {
                             </h4>
 
                             {/* Badge de comportamento do produto */}
-                            <div style={{ marginBottom: "5px" }}>
+                            <div
+                              style={{
+                                marginBottom: "5px",
+                                background: "whitesmoke",
+                              }}
+                            >
                               {produto.comportamentosIndicados
                                 .slice(0, 2)
                                 .map(function (comp) {
@@ -840,8 +894,9 @@ function Loja() {
 
                             <p
                               style={{
+                                background: "whitesmoke",
                                 margin: "0 0 8px 0",
-                                color: "#667eea",
+                                color: "#008000",
                                 fontWeight: "bold",
                                 fontSize: "0.9rem",
                               }}
@@ -855,7 +910,7 @@ function Loja() {
                               }}
                               style={{
                                 background:
-                                  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                  "linear-gradient(135deg, #008000 0%, #006400 100%)",
                                 color: "white",
                                 border: "none",
                                 padding: "6px 12px",
@@ -875,6 +930,7 @@ function Loja() {
                     {/* Tags de compatibilidade */}
                     <div
                       style={{
+                        background: "#fff",
                         marginTop: "10px",
                         display: "flex",
                         gap: "5px",
@@ -931,7 +987,7 @@ function Loja() {
         {pets.length === 0 && (
           <div
             style={{
-              background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+              backgroundColor: "whitesmoke",
               borderRadius: "20px",
               padding: "30px",
               marginBottom: "30px",
@@ -939,19 +995,42 @@ function Loja() {
               color: "white",
             }}
           >
-            <div style={{ fontSize: "48px", marginBottom: "15px" }}>🐾</div>
-            <h3 style={{ margin: "0 0 10px 0", fontSize: "1.3rem" }}>
+            <div
+              style={{
+                fontSize: "48px",
+                marginBottom: "15px",
+                backgroundColor: "whitesmoke",
+                color: "#008000",
+              }}
+            >
+              🐾
+            </div>
+            <h3
+              style={{
+                margin: "0 0 10px 0",
+                fontSize: "1.3rem",
+                backgroundColor: "whitesmoke",
+                color: "#008000",
+              }}
+            >
               Cadastre seu Pet para Receber Recomendações!
             </h3>
-            <p style={{ marginBottom: "20px", opacity: "0.9" }}>
+            <p
+              style={{
+                marginBottom: "20px",
+                opacity: "0.9",
+                backgroundColor: "whitesmoke",
+                color: "#008000",
+              }}
+            >
               Assim podemos sugerir os melhores produtos para o perfil do seu
               amiguinho.
             </p>
             <Link to="/cadastro-pet">
               <button
                 style={{
-                  background: "white",
-                  color: "#f5576c",
+                  background: "#008000",
+                  color: "#fff",
                   border: "none",
                   padding: "12px 30px",
                   borderRadius: "25px",
@@ -968,7 +1047,7 @@ function Loja() {
 
         {/* Grid de Produtos */}
         {produtosFiltrados.length > 0 ? (
-          <div style={estilo.gridProdutos}>
+          <div style={{ ...estilo.gridProdutos, background: "whitesmoke" }}>
             {produtosFiltrados.map(function (produto) {
               return (
                 <ProductCard
@@ -980,7 +1059,7 @@ function Loja() {
                   description={produto.description}
                   onAddToCart={function () {
                     handleAddToCart(produto);
-                  }} // ← ASSIM
+                  }}
                 />
               );
             })}
@@ -1003,7 +1082,7 @@ function Loja() {
             <button
               onClick={limparFiltros}
               style={{
-                background: "#667eea",
+                background: "#008000",
                 color: "white",
                 border: "none",
                 padding: "10px 25px",

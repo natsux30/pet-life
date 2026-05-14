@@ -232,6 +232,7 @@ function Perfil() {
                 <div>
                   <label
                     style={{
+                      backgroundColor: "#fff",
                       color: "#999",
                       fontSize: "12px",
                       display: "block",
@@ -240,15 +241,25 @@ function Perfil() {
                     Endereço
                   </label>
                   <p
-                    style={{ margin: "5px 0", color: "#333", fontSize: "16px" }}
+                    style={{
+                      padding: "5px 0",
+                      backgroundColor: "#fff",
+                      color: "#333",
+                      fontSize: "16px",
+                    }}
                   >
-                    📍 {usuario.endereco.rua}, {usuario.endereco.numero}
+                    {usuario.endereco.rua}, {usuario.endereco.numero}
                     {usuario.endereco.complemento
                       ? " - " + usuario.endereco.complemento
                       : ""}
                   </p>
                   <p
-                    style={{ margin: "2px 0", color: "#666", fontSize: "14px" }}
+                    style={{
+                      padding: "2px 0",
+                      backgroundColor: "#fff",
+                      color: "#666",
+                      fontSize: "14px",
+                    }}
                   >
                     CEP: {usuario.endereco.cep}
                   </p>
@@ -265,7 +276,7 @@ function Perfil() {
                   padding: "10px 20px",
                   borderRadius: "10px",
                   cursor: "pointer",
-                  marginTop: "20px",
+                  paddingTop: "20px",
                   width: "100%",
                 }}
               >
@@ -368,6 +379,7 @@ function Perfil() {
             ) : (
               <div
                 style={{
+                  backgroundColor: "#fff",
                   display: "flex",
                   flexDirection: "column",
                   gap: "15px",
@@ -378,6 +390,7 @@ function Perfil() {
                     <div
                       key={pet.id}
                       style={{
+                        backgroundColor: "#008000",
                         border: "2px solid #f0f0f0",
                         borderRadius: "15px",
                         padding: "20px",
@@ -403,8 +416,7 @@ function Perfil() {
                               width: "60px",
                               height: "60px",
                               borderRadius: "50%",
-                              background:
-                                "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                              backgroundColor: "#fff",
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
@@ -414,13 +426,13 @@ function Perfil() {
                             {getTipoPetEmoji(pet.tipo)}
                           </div>
                           <div>
-                            <h3 style={{ margin: "0 0 5px 0", color: "#333" }}>
+                            <h3 style={{ margin: "0 0 5px 0", color: "#fff" }}>
                               {pet.nomePet}
                             </h3>
                             <p
                               style={{
                                 margin: "0",
-                                color: "#666",
+                                color: "#fff",
                                 fontSize: "14px",
                               }}
                             >
@@ -429,7 +441,7 @@ function Perfil() {
                             <p
                               style={{
                                 margin: "5px 0 0 0",
-                                color: "#999",
+                                color: "#fff",
                                 fontSize: "12px",
                               }}
                             >
@@ -439,7 +451,7 @@ function Perfil() {
                               <p
                                 style={{
                                   margin: "5px 0 0 0",
-                                  color: "#f5576c",
+                                  color: "#ffa9b4",
                                   fontSize: "12px",
                                 }}
                               >

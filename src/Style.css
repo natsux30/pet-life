@@ -3,12 +3,12 @@
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
-  background-color: green;
+  /* background-color: green; */
 }
 
 ./* ============ NAVBAR ============ */
 .navbar {
-  background: #131313;
+  background: #131313 ;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -20,6 +20,7 @@
 }
 
 .navbar__container {
+  background: #008000;
   display: flex;
   justify-content: space-between;
   height: 80px;
@@ -259,12 +260,11 @@
     width: 100%;
   }
 }
-///////////////////////
-.card {
+/* Estilos para os cards de produtos */ .card {
   width: 260px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   overflow: hidden;
-  background: #0071f3;
+  background: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: 0.2s;
 }
@@ -281,16 +281,22 @@
 
 .card-body {
   padding: 16px;
+  background-color: #fff !important;
+  /* border: 2px solid #008000; */
+  border-top: none;
 }
 
 .card-title {
+  background-color: transparent;
   font-size: 16px;
   margin-bottom: 8px;
+  color: #008000;
 }
 
 .card-description {
   font-size: 13px;
-  color: #0071f3;
+  background-color: #fff;
+  color: #999 !important;
   margin-bottom: 10px;
 }
 
@@ -299,6 +305,8 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 12px;
+  background: transparent;
+  color: #008000;
 }
 
 .card-button {
@@ -306,7 +314,7 @@
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background: #0071f3;
+  background: #008000;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -316,7 +324,6 @@
   background: #ccc;
   cursor: not-allowed;
 }
-
 @keyframes spin {
   from {
     transform: translateY(-50%) rotate(0deg);
