@@ -18,7 +18,7 @@ export function AppProvider({ children }) {
   }
 
   function logoutUser() {
-    setUsuario(null);
+    setUsuario();
     setPets([]);
     setCarrinho([]);
   }
@@ -33,7 +33,7 @@ export function AppProvider({ children }) {
   function adicionarPet(petData) {
     const novoPet = {
       ...petData,
-      id: Date.now(),
+      id: Date.now() + Math.floor(Math.random() * 100000),
       dataCadastro: new Date().toLocaleDateString("pt-BR"),
     };
     setPets(function (prev) {
@@ -49,6 +49,9 @@ export function AppProvider({ children }) {
     });
   }
 
+
+
+  
   // ========== Funções do Carrinho ==========
   function adicionarAoCarrinho(produto, quantidade) {
     setCarrinho(function (prev) {
@@ -180,7 +183,7 @@ export function AppProvider({ children }) {
   // ========== Funções de Avaliação ==========
   function adicionarAvaliacao(produtoId, avaliacao) {
     const novaAvaliacao = {
-      id: Date.now(),
+      id: Date.now() + Math.floor(Math.random() * 100000),
       produtoId: produtoId,
       usuarioId: usuario?.id,
       usuarioNome: usuario?.nome || "Anônimo",
@@ -255,7 +258,7 @@ export function AppProvider({ children }) {
     const numeroPedido = Math.floor(Math.random() * 900000) + 100000;
 
     const novoPedido = {
-      id: Date.now(),
+      id: Date.now() + Math.floor(Math.random() * 100000),
       numero: numeroPedido,
       data: new Date().toISOString(),
       status: "confirmado",

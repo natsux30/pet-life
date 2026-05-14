@@ -8,7 +8,7 @@ function ProtectedRoute({ children }) {
   const { addToast } = useToast();
 
   if (!usuario) {
-    addToast('🔒 Faça login para continuar', 'warning');
+    // addToast('🔒 Faça login para continuar', 'warning');
     return <Navigate to="/login" replace />;
   }
 

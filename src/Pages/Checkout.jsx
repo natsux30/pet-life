@@ -331,7 +331,7 @@ function Checkout() {
           <Link to="/loja">
             <button
               style={{
-                background: "#667eea",
+                background: "#008000",
                 color: "white",
                 border: "none",
                 padding: "12px 30px",
@@ -414,7 +414,7 @@ function Checkout() {
                 style={{
                   width: "100%",
                   padding: "12px",
-                  background: "#667eea",
+                  background: "#008000",
                   color: "white",
                   border: "none",
                   borderRadius: "10px",
@@ -426,7 +426,20 @@ function Checkout() {
               </button>
             </Link>
             <Link to="/rastreio" style={{ flex: 1 }}>
-              <button>Rastrear Pedido</button>
+              <button
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  background: "#008000",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                }}
+              >
+                Rastrear Pedido
+              </button>
             </Link>
           </div>
         </div>
@@ -472,7 +485,7 @@ function Checkout() {
                       width: "35px",
                       height: "35px",
                       borderRadius: "50%",
-                      background: ativa ? "#667eea" : "#e0e0e0",
+                      background: ativa ? "#008000" : "#e0e0e0",
                       color: "white",
                       display: "flex",
                       alignItems: "center",
@@ -498,7 +511,7 @@ function Checkout() {
                     style={{
                       width: "40px",
                       height: "2px",
-                      background: etapa > numeroEtapa ? "#667eea" : "#e0e0e0",
+                      background: etapa > numeroEtapa ? "#008000" : "#e0e0e0",
                     }}
                   />
                 )}
@@ -664,7 +677,7 @@ function Checkout() {
                 width: "100%",
                 marginTop: "20px",
                 padding: "14px",
-                background: "#667eea",
+                background: "#008000",
                 color: "white",
                 border: "none",
                 borderRadius: "10px",
@@ -742,7 +755,7 @@ function Checkout() {
                     }}
                     style={{
                       padding: "15px 20px",
-                      border: `2px solid ${formaPagamento === opcao.id ? "#667eea" : "#e0e0e0"}`,
+                      border: `2px solid ${formaPagamento === opcao.id ? "#008000" : "#e0e0e0"}`,
                       borderRadius: "10px",
                       cursor: "pointer",
                       display: "flex",
@@ -770,7 +783,7 @@ function Checkout() {
                       <span
                         style={{
                           marginLeft: "auto",
-                          color: "#667eea",
+                          color: "#008000",
                           fontSize: "1.5rem",
                         }}
                       >
@@ -950,7 +963,7 @@ function Checkout() {
                         onClick={copiarCodigoPix}
                         style={{
                           padding: "10px 20px",
-                          background: copiado ? "#2e7d32" : "#667eea",
+                          background: copiado ? "#2e7d32" : "#008000",
                           color: "white",
                           border: "none",
                           borderRadius: "10px",
@@ -1349,7 +1362,7 @@ function Checkout() {
                 style={{
                   flex: 2,
                   padding: "14px",
-                  background: "#667eea",
+                  background: "#008000",
                   color: "white",
                   border: "none",
                   borderRadius: "10px",
@@ -1429,7 +1442,7 @@ function Checkout() {
                         Qtd: {item.quantidade}
                       </p>
                     </div>
-                    <p style={{ fontWeight: "bold", color: "#667eea" }}>
+                    <p style={{ fontWeight: "bold", color: "#008000" }}>
                       R$ {(item.price * item.quantidade).toFixed(2)}
                     </p>
                   </div>
@@ -1531,7 +1544,7 @@ function Checkout() {
                 }}
               >
                 <span>Total</span>
-                <span style={{ color: "#667eea" }}>
+                <span style={{ color: "#008000" }}>
                   R$ {totalComDesconto.toFixed(2)}
                 </span>
               </div>

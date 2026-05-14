@@ -498,7 +498,7 @@ const todosProdutos = [
       "medroso",
       "fogos",
     ],
-  },
+  }
   // {
   //   id: 14,
   //   title: "Kit Enriquecimento Ambiental",

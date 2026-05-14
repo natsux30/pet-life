@@ -35,7 +35,7 @@ function Rastreio() {
 
   function getStatusColor(status) {
     const cores = {
-      'Pedido confirmado': '#667eea',
+      'Pedido confirmado': '#008000',
       'Em separação': '#f093fb',
       'Embalado': '#f5576c',
       'Enviado': '#e65100',
@@ -83,7 +83,7 @@ function Rastreio() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', flexWrap: 'wrap', gap: '15px' }}>
               <div>
                 <button onClick={function() { setPedidoSelecionado(null); }} style={{
-                  background: 'none', border: 'none', color: '#667eea',
+                  background: 'none', border: 'none', color: '#008000',
                   cursor: 'pointer', fontSize: '0.9rem', padding: '0',
                   marginBottom: '10px', display: 'block'
                 }}>
@@ -121,7 +121,7 @@ function Rastreio() {
               <button onClick={function() {
                 navigator.clipboard.writeText(pedidoSelecionado.rastreio.codigo);
               }} style={{
-                background: '#667eea', color: 'white', border: 'none',
+                background: '#008000', color: 'white', border: 'none',
                 padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.85rem'
               }}>
                 📋 Copiar
@@ -160,7 +160,7 @@ function Rastreio() {
                     {/* Bolinha */}
                     <div style={{
                       width: '32px', height: '32px', borderRadius: '50%',
-                      background: isFirst ? '#2e7d32' : index === pedidoSelecionado.rastreio.historico.length - 1 ? '#e0e0e0' : '#667eea',
+                      background: isFirst ? '#2e7d32' : index === pedidoSelecionado.rastreio.historico.length - 1 ? '#e0e0e0' : '#008000',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       color: 'white', fontSize: '0.9rem', flexShrink: 0, zIndex: 1
                     }}>
@@ -213,7 +213,7 @@ function Rastreio() {
                     <p style={{ margin: '0', fontWeight: 'bold', color: '#333' }}>{item.title}</p>
                     <p style={{ margin: '3px 0', color: '#999', fontSize: '0.85rem' }}>Qtd: {item.quantidade}</p>
                   </div>
-                  <p style={{ fontWeight: 'bold', color: '#667eea' }}>
+                  <p style={{ fontWeight: 'bold', color: '#008000' }}>
                     R$ {(item.price * item.quantidade).toFixed(2)}
                   </p>
                 </div>
@@ -241,7 +241,7 @@ function Rastreio() {
                 fontWeight: 'bold', fontSize: '1.1rem', color: '#333'
               }}>
                 <span>Total</span>
-                <span style={{ color: '#667eea' }}>R$ {pedidoSelecionado.total.toFixed(2)}</span>
+                <span style={{ color: '#008000' }}>R$ {pedidoSelecionado.total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@ function Rastreio() {
               }}
             />
             <button onClick={buscarPedido} style={{
-              padding: '12px 25px', background: '#667eea', color: 'white',
+              padding: '12px 25px', background: '#008000', color: 'white',
               border: 'none', borderRadius: '10px', cursor: 'pointer',
               fontWeight: 'bold', fontSize: '1rem'
             }}>
@@ -312,13 +312,13 @@ function Rastreio() {
                 {getStatusIcon(pedidoEncontrado.rastreio.status)} {pedidoEncontrado.rastreio.status}
               </div>
             </div>
-            <p style={{ marginTop: '15px', color: '#667eea', textAlign: 'right' }}>
+            <p style={{ marginTop: '15px', color: '#008000', textAlign: 'right' }}>
               Ver detalhes →
             </p>
           </div>
         )}
 
-        {/* Lista de pedidos (se houver) */}
+        {/* Lista de pedidos  */}
         {pedidos.length > 0 && !pedidoEncontrado && (
           <div>
             <h2 style={{ color: '#333', fontSize: '1.2rem', marginBottom: '15px' }}>Seus Pedidos</h2>
@@ -359,7 +359,7 @@ function Rastreio() {
             <p style={{ color: '#666' }}>Faça uma compra para começar a rastrear!</p>
             <Link to="/loja">
               <button style={{
-                background: '#667eea', color: 'white', border: 'none',
+                background: '#008000', color: 'white', border: 'none',
                 padding: '12px 25px', borderRadius: '10px', cursor: 'pointer',
                 marginTop: '15px', fontSize: '1rem'
               }}>

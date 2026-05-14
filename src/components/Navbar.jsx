@@ -11,8 +11,8 @@ function Navbar() {
   function handleLogout() {
     logoutUser();
     setMenuAberto(false);
+    window.location.href = "/";
   }
-
   function toggleMenu() {
     setMenuAberto(!menuAberto);
   }
@@ -21,18 +21,14 @@ function Navbar() {
     setMenuAberto(false);
   }
 
-  // Fecha o menu ao clicar em um link
   useEffect(() => {
     const links = document.querySelectorAll(".navbar__links, .button");
-
     function handleClick() {
       setMenuAberto(false);
     }
-
     links.forEach((link) => {
       link.addEventListener("click", handleClick);
     });
-
     return () => {
       links.forEach((link) => {
         link.removeEventListener("click", handleClick);
@@ -47,7 +43,6 @@ function Navbar() {
           🐾 Pets-LifeStyle
         </Link>
 
-        {/* Menu mobile toggle */}
         <div
           className={`navbar__toggle ${menuAberto ? "is-active" : ""}`}
           id="mobile-menu"
@@ -59,22 +54,20 @@ function Navbar() {
         </div>
 
         <ul className={`navbar__menu ${menuAberto ? "active" : ""}`}>
-          {/* Botão Loja */}
-          <li className="navbar__item">
+          <li className="navbar__item" key="nav-loja">
             <Link to="/loja" className="navbar__links" onClick={fecharMenu}>
               🏪 Loja
             </Link>
           </li>
-          {/* Carrinho - sempre visível */}
-          <li className="navbar__item">
+
+          <li className="navbar__item" key="nav-carrinho">
             <Link to="/carrinho" className="navbar__links" onClick={fecharMenu}>
               🛒 Carrinho
             </Link>
           </li>
 
-          {/* Rastreio - só logado */}
           {usuario && (
-            <li className="navbar__item">
+            <li className="navbar__item" key="nav-rastreio">
               <Link
                 to="/rastreio"
                 className="navbar__links"
@@ -85,24 +78,22 @@ function Navbar() {
             </li>
           )}
 
-          {/* Perfil (só aparece se estiver logado) */}
           {usuario && (
-            <li className="navbar__item">
+            <li className="navbar__item" key="nav-perfil">
               <Link to="/perfil" className="navbar__links" onClick={fecharMenu}>
                 👤 Perfil
               </Link>
             </li>
           )}
 
-          {/* Login ou Logout/Nome do usuário */}
           {usuario ? (
             <>
-              <li className="navbar__item">
+              <li className="navbar__item" key="nav-usuario">
                 <span className="navbar__user-name">
-                  Olá, {usuario.nome.split(" ")[0]}
+                  Olá, {usuario?.nome?.split(" ")[0] || "Usuário"}
                 </span>
               </li>
-              <li className="navbar__btn">
+              <li className="navbar__btn" key="nav-sair">
                 <button
                   onClick={handleLogout}
                   className="button button--logout"
@@ -113,12 +104,12 @@ function Navbar() {
             </>
           ) : (
             <>
-              <li className="navbar__btn">
+              <li className="navbar__btn" key="nav-login">
                 <Link to="/login" className="button" onClick={fecharMenu}>
                   Login
                 </Link>
               </li>
-              <li className="navbar__btn">
+              <li className="navbar__btn" key="nav-cadastro">
                 <Link
                   to="/cadastro"
                   className="button button--outline"

@@ -14,11 +14,22 @@ import Rastreio from "./Pages/Rastreio";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AppProvider } from "./context/AppContext";
 import { ToastProvider } from "./components/Toast";
+import { useEffect } from "react";
 
 import React from "react";
 import "./Style.css";
 
 function App() {
+  // Dentro de App(), antes do return:
+  useEffect(function () {
+    const produtos = require("./data/produtos").todosProdutos;
+    const ids = produtos.map((p) => p.id);
+    const duplicados = ids.filter((id, index) => ids.indexOf(id) !== index);
+    if (duplicados.length > 0) {
+      console.error("IDs DUPLICADOS nos produtos:", duplicados);
+    }
+  }, []);
+
   return (
     <AppProvider>
       <ToastProvider>
@@ -34,31 +45,46 @@ function App() {
             <Route path="/links" element={<Links />} />
 
             {/* Rotas protegidas */}
-            <Route path="/carrinho" element={
-              <ProtectedRoute>
-                <Carrinho />
-              </ProtectedRoute>
-            } />
-            <Route path="/checkout" element={
-              <ProtectedRoute>
-                <Checkout />
-              </ProtectedRoute>
-            } />
-            <Route path="/perfil" element={
-              <ProtectedRoute>
-                <Perfil />
-              </ProtectedRoute>
-            } />
-            <Route path="/cadastro-pet" element={
-              <ProtectedRoute>
-                <CadastroPet />
-              </ProtectedRoute>
-            } />
-            <Route path="/rastreio" element={
-              <ProtectedRoute>
-                <Rastreio />
-              </ProtectedRoute>
-            } />
+            <Route
+              path="/carrinho"
+              element={
+                <ProtectedRoute>
+                  <Carrinho />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/perfil"
+              element={
+                <ProtectedRoute>
+                  <Perfil />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cadastro-pet"
+              element={
+                <ProtectedRoute>
+                  <CadastroPet />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/rastreio"
+              element={
+                <ProtectedRoute>
+                  <Rastreio />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </ToastProvider>

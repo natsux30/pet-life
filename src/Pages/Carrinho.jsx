@@ -27,140 +27,36 @@ function Carrinho() {
   const [cupomInput, setCupomInput] = useState("");
   const totalComDesconto = getTotal() - desconto;
 
-  function handleRemover(produtoId) {
-    setItemRemovendo(produtoId);
-  }
-
-  function confirmarRemocao() {
-    removerDoCarrinho(itemRemovendo);
-    setItemRemovendo(null);
-  }
-
-  function handleQuantidade(produtoId, novaQuantidade) {
-    if (novaQuantidade > 0 && novaQuantidade <= 99) {
-      atualizarQuantidade(produtoId, novaQuantidade);
-    }
-  }
+  function handleRemover(produtoId) { setItemRemovendo(produtoId); }
+  function confirmarRemocao() { removerDoCarrinho(itemRemovendo); setItemRemovendo(null); }
+  function handleQuantidade(produtoId, novaQuantidade) { if (novaQuantidade > 0 && novaQuantidade <= 99) atualizarQuantidade(produtoId, novaQuantidade); }
 
   function handleAplicarCupom() {
-    if (!cupomInput.trim()) {
-      addToast("⚠️ Digite um código de cupom", "warning");
-      return;
-    }
-
+    if (!cupomInput.trim()) { addToast("⚠️ Digite um código de cupom", "warning"); return; }
     const resultado = aplicarCupom(cupomInput, getSubtotal(), getFrete());
-
-    if (resultado.sucesso) {
-      addToast(`🎉 ${resultado.mensagem}`, "success");
-    } else {
-      addToast(`❌ ${resultado.mensagem}`, "error");
-    }
+    if (resultado.sucesso) { addToast(`🎉 ${resultado.mensagem}`, "success"); }
+    else { addToast(`❌ ${resultado.mensagem}`, "error"); }
   }
 
-  function handleRemoverCupom() {
-    removerCupom();
-    setCupomInput("");
-    addToast("Cupom removido", "info");
-  }
+  function handleRemoverCupom() { removerCupom(); setCupomInput(""); addToast("Cupom removido", "info"); }
 
   function handleFinalizarCompra() {
+    if (!usuario) { addToast("🔒 Faça login para finalizar a compra", "warning"); navigate("/login"); return; }
     navigate("/checkout");
   }
 
-  function formatarCEP(value) {
-    const numbers = value.replace(/\D/g, "");
-    if (numbers.length <= 5) return numbers;
-    return numbers.replace(/(\d{5})(\d{0,3})/, "$1-$2");
-  }
-  // Se não estiver logado e tentar finalizar compra
-  function handleFinalizarCompra() {
-    if (!usuario) {
-      addToast("🔒 Faça login para finalizar a compra", "warning");
-      navigate("/login");
-      return;
-    }
-    navigate("/checkout");
-  }
-  // Mostrar aviso no carrinho se não estiver logado
-  if (!usuario && carrinho.length > 0) {
-    return (
-      <div
-        style={
-          {
-            /* ... */
-          }
-        }
-      >
-        {/* Conteúdo do carrinho */}
-        <div
-          style={{
-            background: "#fff3e0",
-            padding: "15px",
-            borderRadius: "10px",
-            marginBottom: "20px",
-            border: "1px solid #ffcc80",
-          }}
-        >
-          <p style={{ margin: 0, color: "#e65100" }}>
-            ⚠️ Você precisa estar logado para finalizar a compra.
-          </p>
-          <Link to="/login">
-            <button
-              style={{
-                background: "#667eea",
-                color: "white",
-                border: "none",
-                padding: "10px 20px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                marginTop: "10px",
-              }}
-            >
-              Fazer Login
-            </button>
-          </Link>
-        </div>
-        {/* ... resto do carrinho */}
-      </div>
-    );
-  }
+  function formatarCEP(value) { const numbers = value.replace(/\D/g, ""); if (numbers.length <= 5) return numbers; return numbers.replace(/(\d{5})(\d{0,3})/, "$1-$2"); }
 
   // Carrinho vazio
   if (carrinho.length === 0) {
     return (
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#f5f5f5",
-          padding: "20px",
-        }}
-      >
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f5f5f5", padding: "20px" }}>
         <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: "80px", marginBottom: "20px" }}>🛒</div>
-          <h1 style={{ color: "#333", marginBottom: "10px" }}>
-            Seu carrinho está vazio
-          </h1>
-          <p style={{ color: "#666", marginBottom: "30px" }}>
-            Que tal explorar nossos produtos e encontrar algo para seu pet?
-          </p>
+          <h1 style={{ color: "#333", marginBottom: "10px" }}>Seu carrinho está vazio</h1>
+          <p style={{ color: "#666", marginBottom: "30px" }}>Que tal explorar nossos produtos?</p>
           <Link to="/loja">
-            <button
-              style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                color: "white",
-                border: "none",
-                padding: "15px 40px",
-                borderRadius: "30px",
-                fontSize: "1.1rem",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Ir para Loja
-            </button>
+            <button style={{ background: "#008000", color: "white", border: "none", padding: "15px 40px", borderRadius: "30px", fontSize: "1.1rem", fontWeight: "bold", cursor: "pointer" }}>Ir para Loja</button>
           </Link>
         </div>
       </div>
@@ -168,570 +64,97 @@ function Carrinho() {
   }
 
   return (
-    <div style={{ background: "#f5f5f5", minHeight: "100vh", padding: "20px" }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+    <div className="carrinho-container">
+      <div className="carrinho-wrapper">
+        
         {/* Cabeçalho */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "30px",
-          }}
-        >
-          <h1 style={{ color: "#333", fontSize: "2rem" }}>
-            🛒 Carrinho ({getQuantidadeItens()}{" "}
-            {getQuantidadeItens() === 1 ? "item" : "itens"})
-          </h1>
-          <button
-            onClick={function () {
-              if (window.confirm("Tem certeza que deseja limpar o carrinho?")) {
-                limparCarrinho();
-              }
-            }}
-            style={{
-              background: "none",
-              border: "1px solid #ff4757",
-              color: "#ff4757",
-              padding: "8px 15px",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontSize: "0.85rem",
-            }}
-          >
-            🗑️ Limpar Carrinho
-          </button>
+        <div className="carrinho-header">
+          <h1 className="carrinho-titulo">🛒 Carrinho ({getQuantidadeItens()} {getQuantidadeItens() === 1 ? "item" : "itens"})</h1>
+          <button onClick={function () { if (window.confirm("Tem certeza que deseja limpar o carrinho?")) limparCarrinho(); }} className="carrinho-limpar-btn">🗑️ Limpar Carrinho</button>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 350px",
-            gap: "20px",
-          }}
-        >
+        <div className="carrinho-grid">
+          
           {/* Lista de Itens */}
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-          >
+          <div className="carrinho-itens">
             {carrinho.map(function (item) {
               return (
-                <div
-                  key={item.id}
-                  style={{
-                    background: "white",
-                    borderRadius: "15px",
-                    padding: "20px",
-                    display: "flex",
-                    gap: "20px",
-                    boxShadow: "0 3px 15px rgba(0,0,0,0.08)",
-                  }}
-                >
-                  {/* Imagem */}
+                <div key={item.id} className="carrinho-item">
                   <Link to={`/produto/${item.id}`}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      style={{
-                        width: "120px",
-                        height: "120px",
-                        objectFit: "cover",
-                        borderRadius: "10px",
-                      }}
-                    />
+                    <img src={item.image} alt={item.title} className="carrinho-item-img" />
                   </Link>
-
-                  {/* Informações */}
-                  <div style={{ flex: 1 }}>
-                    <Link
-                      to={`/produto/${item.id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <h3
-                        style={{
-                          margin: "0 0 5px 0",
-                          color: "#333",
-                          fontSize: "1.1rem",
-                        }}
-                      >
-                        {item.title}
-                      </h3>
-                    </Link>
-
-                    <p
-                      style={{
-                        color: "#667eea",
-                        fontWeight: "bold",
-                        fontSize: "1.3rem",
-                        margin: "0 0 15px 0",
-                      }}
-                    >
-                      R$ {item.price.toFixed(2)}
-                    </p>
-
-                    {/* Controle de Quantidade */}
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "15px",
-                      }}
-                    >
-                      <span style={{ color: "#666", fontSize: "0.9rem" }}>
-                        Qtd:
-                      </span>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "5px",
-                        }}
-                      >
-                        <button
-                          onClick={function () {
-                            handleQuantidade(item.id, item.quantidade - 1);
-                          }}
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
-                            border: "2px solid #e0e0e0",
-                            background: "white",
-                            cursor: "pointer",
-                            fontSize: "1rem",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          −
-                        </button>
-                        <span
-                          style={{
-                            width: "40px",
-                            textAlign: "center",
-                            fontWeight: "bold",
-                            fontSize: "1rem",
-                          }}
-                        >
-                          {item.quantidade}
-                        </span>
-                        <button
-                          onClick={function () {
-                            handleQuantidade(item.id, item.quantidade + 1);
-                          }}
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
-                            border: "2px solid #e0e0e0",
-                            background: "white",
-                            cursor: "pointer",
-                            fontSize: "1rem",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          +
-                        </button>
+                  <div className="carrinho-item-info">
+                    <Link to={`/produto/${item.id}`} className="carrinho-item-titulo"><h3>{item.title}</h3></Link>
+                    <p className="carrinho-item-preco">R$ {item.price.toFixed(2)}</p>
+                    <div className="carrinho-qtd">
+                      <span className="carrinho-qtd-label">Qtd:</span>
+                      <div className="carrinho-qtd-botoes">
+                        <button className="carrinho-qtd-btn" onClick={function () { handleQuantidade(item.id, item.quantidade - 1); }}>−</button>
+                        <span className="carrinho-qtd-valor">{item.quantidade}</span>
+                        <button className="carrinho-qtd-btn" onClick={function () { handleQuantidade(item.id, item.quantidade + 1); }}>+</button>
                       </div>
                     </div>
-
-                    {/* Subtotal */}
-                    <p
-                      style={{
-                        color: "#999",
-                        fontSize: "0.85rem",
-                        margin: "10px 0 0 0",
-                      }}
-                    >
-                      Subtotal: R$ {(item.price * item.quantidade).toFixed(2)}
-                    </p>
+                    <p className="carrinho-item-subtotal">Subtotal: R$ {(item.price * item.quantidade).toFixed(2)}</p>
                   </div>
-
-                  {/* Botão Remover */}
-                  <button
-                    onClick={function () {
-                      handleRemover(item.id);
-                    }}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      color: "#ff4757",
-                      cursor: "pointer",
-                      fontSize: "1.2rem",
-                      alignSelf: "flex-start",
-                      padding: "5px",
-                    }}
-                    title="Remover item"
-                  >
-                    🗑️
-                  </button>
+                  <button className="carrinho-remover-btn" onClick={function () { handleRemover(item.id); }} title="Remover item">🗑️</button>
                 </div>
               );
             })}
           </div>
 
-          {/* Resumo do Pedido */}
+          {/* Resumo */}
           <div>
-            <div
-              style={{
-                background: "white",
-                borderRadius: "15px",
-                padding: "25px",
-                boxShadow: "0 3px 15px rgba(0,0,0,0.08)",
-                position: "sticky",
-                top: "100px",
-              }}
-            >
-              <h2
-                style={{
-                  marginTop: 0,
-                  color: "#333",
-                  fontSize: "1.3rem",
-                  marginBottom: "20px",
-                }}
-              >
-                📋 Resumo do Pedido
-              </h2>
-
-              {/* CEP */}
-              <div style={{ marginBottom: "20px" }}>
-                <label
-                  style={{
-                    display: "block",
-                    color: "#666",
-                    fontSize: "0.85rem",
-                    marginBottom: "5px",
-                  }}
-                >
-                  Calcular Frete
-                </label>
-                <div style={{ display: "flex", gap: "10px" }}>
-                  <input
-                    type="text"
-                    placeholder="00000-000"
-                    value={formatarCEP(cep)}
-                    onChange={function (e) {
-                      const raw = e.target.value.replace(/\D/g, "");
-                      setCep(raw);
-                    }}
-                    maxLength={9}
-                    style={{
-                      flex: 1,
-                      padding: "10px",
-                      border: "2px solid #e0e0e0",
-                      borderRadius: "8px",
-                      fontSize: "0.9rem",
-                    }}
-                  />
-                  <button
-                    style={{
-                      padding: "10px 15px",
-                      background: "#667eea",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    OK
-                  </button>
+            <div className="carrinho-resumo">
+              <h2 className="carrinho-resumo-titulo">📋 Resumo do Pedido</h2>
+              
+              <div className="carrinho-campo">
+                <label className="carrinho-label">Calcular Frete</label>
+                <div className="carrinho-input-group">
+                  <input type="text" placeholder="00000-000" value={formatarCEP(cep)} onChange={function (e) { setCep(e.target.value.replace(/\D/g, "")); }} maxLength={9} className="carrinho-input" />
+                  <button className="carrinho-input-ok">OK</button>
                 </div>
               </div>
 
-              {/* Cupom */}
-              <div style={{ marginBottom: "20px" }}>
-                <label
-                  style={{
-                    display: "block",
-                    color: "#666",
-                    fontSize: "0.85rem",
-                    marginBottom: "5px",
-                  }}
-                >
-                  Cupom de Desconto
-                </label>
-                <div style={{ marginBottom: "20px" }}>
-                  <label
-                    style={{
-                      display: "block",
-                      color: "#666",
-                      fontSize: "0.85rem",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Cupom de Desconto
-                  </label>
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <input
-                      type="text"
-                      placeholder="Digite o cupom"
-                      value={cupomInput}
-                      onChange={function (e) {
-                        setCupomInput(e.target.value.toUpperCase());
-                      }}
-                      disabled={cupomAplicado}
-                      style={{
-                        flex: 1,
-                        padding: "10px",
-                        border: `2px solid ${cupomAplicado ? "#2e7d32" : "#e0e0e0"}`,
-                        borderRadius: "8px",
-                        fontSize: "0.9rem",
-                        background: cupomAplicado ? "#e8f5e9" : "white",
-                      }}
-                    />
-                    {!cupomAplicado ? (
-                      <button
-                        onClick={handleAplicarCupom}
-                        style={{
-                          padding: "10px 15px",
-                          background: "#667eea",
-                          color: "white",
-                          border: "none",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          fontSize: "0.85rem",
-                        }}
-                      >
-                        Aplicar
-                      </button>
-                    ) : (
-                      <button
-                        onClick={handleRemoverCupom}
-                        style={{
-                          padding: "10px 15px",
-                          background: "#ff4757",
-                          color: "white",
-                          border: "none",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          fontSize: "0.85rem",
-                        }}
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </div>
-                  <div
-                    style={{
-                      marginTop: "5px",
-                      fontSize: "0.75rem",
-                      color: "#999",
-                    }}
-                  >
-                    Cupons: PET10, PET20, BOASVINDAS, FRETEGRATIS
-                  </div>
+              <div className="carrinho-campo">
+                <label className="carrinho-label">Cupom de Desconto</label>
+                <div className="carrinho-input-group">
+                  <input type="text" placeholder="Digite o cupom" value={cupomInput} onChange={function (e) { setCupomInput(e.target.value.toUpperCase()); }} disabled={cupomAplicado} className="carrinho-input" style={{ borderColor: cupomAplicado ? "#2e7d32" : "#e0e0e0", background: cupomAplicado ? "#e8f5e9" : "white" }} />
+                  {!cupomAplicado ? (
+                    <button onClick={handleAplicarCupom} className="carrinho-aplicar-btn">Aplicar</button>
+                  ) : (
+                    <button onClick={handleRemoverCupom} className="carrinho-remover-cupom-btn">✕</button>
+                  )}
                 </div>
-                <div
-                  style={{
-                    marginTop: "5px",
-                    fontSize: "0.75rem",
-                    color: "#999",
-                  }}
-                >
-                  Cupons: PET10, PET20, BOASVINDAS, FRETEGRATIS
-                </div>
+                <p className="carrinho-cupons-dica">Cupons: PET10, PET20, BOASVINDAS, FRETEGRATIS</p>
               </div>
 
-              {/* Valores */}
-              <div
-                style={{ borderTop: "1px solid #f0f0f0", paddingTop: "15px" }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "10px",
-                    color: "#666",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  <span>Subtotal</span>
-                  <span>R$ {getSubtotal().toFixed(2)}</span>
-                </div>
-
+              <div className="carrinho-valores">
+                <div className="carrinho-linha"><span>Subtotal</span><span>R$ {getSubtotal().toFixed(2)}</span></div>
                 {desconto > 0 && (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: "10px",
-                      color: "#2e7d32",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    <span>Desconto ({cupom})</span>
-                    <span>- R$ {desconto.toFixed(2)}</span>
-                  </div>
+                  <div className="carrinho-linha-desconto"><span>Desconto ({cupom})</span><span>- R$ {desconto.toFixed(2)}</span></div>
                 )}
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "10px",
-                    color: "#666",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  <span>Frete</span>
-                  <span
-                    style={{ color: getFrete() === 0 ? "#2e7d32" : "#666" }}
-                  >
-                    {getFrete() === 0
-                      ? "Grátis"
-                      : `R$ ${getFrete().toFixed(2)}`}
-                  </span>
-                </div>
-                {/* TOTAL COM DECONTO E FRETE */}
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginTop: "15px",
-                    paddingTop: "15px",
-                    borderTop: "2px solid #f0f0f0",
-                    fontWeight: "bold",
-                    fontSize: "1.2rem",
-                    color: "#333",
-                  }}
-                >
-                  <span>Total</span>
-                  <span style={{ color: "#667eea" }}>
-                    R$ {totalComDesconto.toFixed(2)}
-                  </span>
-                </div>
-
-                {getSubtotal() < 99 && getSubtotal() > 0 && (
-                  <p
-                    style={{
-                      color: "#e65100",
-                      fontSize: "0.8rem",
-                      marginTop: "10px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Faltam R$ {(99 - getSubtotal()).toFixed(2)} para frete
-                    grátis
-                  </p>
-                )}
+                <div className="carrinho-linha"><span>Frete</span><span style={{ color: getFrete() === 0 ? "#2e7d32" : "#666" }}>{getFrete() === 0 ? "Grátis" : `R$ ${getFrete().toFixed(2)}`}</span></div>
+                <div className="carrinho-linha-total"><span>Total</span><span className="carrinho-total-valor">R$ {totalComDesconto.toFixed(2)}</span></div>
+                {getSubtotal() < 99 && getSubtotal() > 0 && <p className="carrinho-frete-gratis-aviso">Faltam R$ {(99 - getSubtotal()).toFixed(2)} para frete grátis</p>}
               </div>
 
-              {/* Botão Finalizar */}
-              <button
-                onClick={handleFinalizarCompra}
-                style={{
-                  width: "100%",
-                  padding: "15px",
-                  background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "10px",
-                  fontSize: "1.1rem",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  marginTop: "20px",
-                  transition: "transform 0.2s",
-                }}
-                onMouseEnter={function (e) {
-                  e.target.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={function (e) {
-                  e.target.style.transform = "translateY(0)";
-                }}
-              >
-                Finalizar Compra 🎉
-              </button>
-
-              <Link to="/loja">
-                <button
-                  style={{
-                    width: "100%",
-                    padding: "12px",
-                    background: "transparent",
-                    color: "#667eea",
-                    border: "2px solid #667eea",
-                    borderRadius: "10px",
-                    fontSize: "0.9rem",
-                    fontWeight: "500",
-                    cursor: "pointer",
-                    marginTop: "10px",
-                  }}
-                >
-                  Continuar Comprando
-                </button>
-              </Link>
+              <button className="carrinho-finalizar-btn" onClick={handleFinalizarCompra}>Finalizar Compra</button>
+              <Link to="/loja"><button className="carrinho-continuar-btn">Continuar Comprando</button></Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Modal de Confirmação de Remoção */}
+      {/* Modal */}
       {itemRemovendo && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0,0,0,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "20px",
-              padding: "30px",
-              maxWidth: "400px",
-              textAlign: "center",
-            }}
-          >
-            <div style={{ fontSize: "48px", marginBottom: "15px" }}>🗑️</div>
-            <h3 style={{ margin: "0 0 10px 0" }}>Remover Item</h3>
-            <p style={{ color: "#666", margin: "0 0 20px 0" }}>
-              Tem certeza que deseja remover este item do carrinho?
-            </p>
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button
-                onClick={function () {
-                  setItemRemovendo(null);
-                }}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  border: "2px solid #e0e0e0",
-                  borderRadius: "10px",
-                  background: "white",
-                  cursor: "pointer",
-                }}
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={confirmarRemocao}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  border: "none",
-                  borderRadius: "10px",
-                  background: "#d63031",
-                  color: "white",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}
-              >
-                Remover
-              </button>
+        <div className="carrinho-modal-overlay">
+          <div className="carrinho-modal">
+            <div className="carrinho-modal-icone">🗑️</div>
+            <h3>Remover Item</h3>
+            <p style={{ color: "#666", marginBottom: "20px" }}>Tem certeza que deseja remover este item?</p>
+            <div className="carrinho-modal-botoes">
+              <button className="carrinho-modal-cancelar" onClick={function () { setItemRemovendo(null); }}>Cancelar</button>
+              <button className="carrinho-modal-remover" onClick={confirmarRemocao}>Remover</button>
             </div>
           </div>
         </div>
