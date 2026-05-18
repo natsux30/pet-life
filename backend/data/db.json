@@ -1,0 +1,467 @@
+{
+  "usuarios": [
+    {
+      "id": "ac897908-d38e-4324-ac89-56dcc73b21a3",
+      "nome": "Teste",
+      "email": "teste@email.com",
+      "senha": "$2a$10$3kMyGDRgEb9R9IpZqC4LkeVhZY37//Fga9cjG3G2K391G4yd0YMN2",
+      "telefone": "11999999999",
+      "cep": "01001000",
+      "endereco": "Rua Teste",
+      "numero": "123",
+      "complemento": "",
+      "dataCadastro": "2026-05-18T14:29:02.073Z"
+    },
+    {
+      "id": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "nome": "Ivan de Oliveira",
+      "email": "ivan.oliver.pe@gmail.com",
+      "senha": "$2a$10$qfBTf4b2Aacur7tdLqj58ex9ue3JkY1A5vGU91bUC1ljfLGF7SxqK",
+      "telefone": "11999999999",
+      "cep": "06385090",
+      "endereco": "Rua Paraíso",
+      "numero": "123",
+      "complemento": "",
+      "dataCadastro": "2026-05-18T14:37:23.669Z"
+    },
+    {
+      "id": "7c7c3c27-480f-40a2-b6e4-35b73c7306c9",
+      "nome": "teste",
+      "email": "teste1@teste.com",
+      "senha": "$2a$10$MlsFuH7AZM69t.g2NhUtaOv7u8oAftm0TguMzEfXW6LEVhgWwqAjO",
+      "telefone": "11111111111",
+      "cep": "06351040",
+      "endereco": "Estrada Fazendinha",
+      "numero": "1",
+      "complemento": "",
+      "dataCadastro": "2026-05-18T15:36:55.199Z"
+    }
+  ],
+  "pets": [
+    {
+      "id": "881e539b-ae4a-4cbc-928d-11c8a64feed7",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "nomePet": "Tasha",
+      "tipo": "gato",
+      "raca": "Sphynx (Sem Pelo)",
+      "porte": "pequeno",
+      "idade": "1",
+      "peso": "2",
+      "comportamento": "Sociável",
+      "alergias": "Lã",
+      "observacoes": "",
+      "dataCadastro": "2026-05-18T14:38:28.482Z"
+    },
+    {
+      "id": "2fc59633-deaa-408f-8390-118fb3f37a0b",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "nomePet": "Tasha",
+      "tipo": "gato",
+      "raca": "SRD (Sem Raça Definida)",
+      "porte": "pequeno",
+      "idade": "1",
+      "peso": "2",
+      "comportamento": "Protetor",
+      "alergias": "Medicamentos (antibióticos)",
+      "observacoes": "",
+      "dataCadastro": "2026-05-18T14:46:46.597Z"
+    },
+    {
+      "id": "c61ac3e0-a171-4b48-b6a5-f1b653af46cc",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "nomePet": "Rex",
+      "tipo": "cachorro",
+      "raca": "Golden",
+      "porte": "grande",
+      "idade": 3,
+      "peso": 28,
+      "comportamento": "Brincalhão",
+      "dataCadastro": "2026-05-18T15:06:23.354Z"
+    },
+    {
+      "id": "4d379e9e-c394-4dbb-b302-de1ca10b99d0",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "nomePet": "qwdasfdsad",
+      "tipo": "peixe",
+      "raca": "Acará Bandeira",
+      "porte": "medio",
+      "idade": "3",
+      "peso": "1",
+      "comportamento": "Agitado",
+      "alergias": "Chocolate",
+      "observacoes": "",
+      "dataCadastro": "2026-05-18T15:12:14.784Z"
+    }
+  ],
+  "produtos": [
+    {
+      "id": "1",
+      "titulo": "Brinquedo Mordedor Kong",
+      "preco": 29.9,
+      "descricaoCurta": "Brinquedo resistente para cães",
+      "descricaoCompleta": "O Brinquedo Mordedor Kong é perfeito para cães de todas as idades.",
+      "categoria": "caes",
+      "porteIndicado": "medio",
+      "idadeIndicada": "adulto",
+      "material": "borracha",
+      "finalidade": "morder",
+      "destaque": true,
+      "estoque": 15,
+      "avaliacaoMedia": 4.8,
+      "numAvaliacoes": 127,
+      "imagens": [
+        {
+          "url": "https://images.unsplash.com/photo-1601758123926-59d5c0aad4ec?w=600",
+          "ordem": 1,
+          "principal": true
+        }
+      ],
+      "comportamentosIndicados": [
+        "Agitado",
+        "Ansioso",
+        "Destrutivo"
+      ],
+      "contraindicadoAlergias": [
+        "Látex",
+        "Borracha sintética"
+      ],
+      "palavrasChave": [
+        "kong",
+        "mordedor",
+        "cachorro"
+      ],
+      "ativo": true
+    },
+    {
+      "id": "2",
+      "titulo": "Arranhador para Gatos",
+      "preco": 89.9,
+      "descricaoCurta": "Arranhador com poste em sisal",
+      "descricaoCompleta": "Arranhador perfeito para gatos.",
+      "categoria": "gatos",
+      "porteIndicado": "pequeno",
+      "idadeIndicada": "adulto",
+      "material": "sisal",
+      "finalidade": "arranhar",
+      "destaque": true,
+      "estoque": 8,
+      "avaliacaoMedia": 4.9,
+      "numAvaliacoes": 89,
+      "imagens": [
+        {
+          "url": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600",
+          "ordem": 1,
+          "principal": true
+        }
+      ],
+      "comportamentosIndicados": [
+        "Curioso",
+        "Energético"
+      ],
+      "contraindicadoAlergias": [],
+      "palavrasChave": [
+        "arranhador",
+        "gato",
+        "sisal"
+      ],
+      "ativo": true
+    },
+    {
+      "id": "3",
+      "titulo": "Bola para Cães",
+      "preco": 45.9,
+      "descricaoCurta": "Bola resistente para exercícios",
+      "descricaoCompleta": "Bola interativa para cães ativos.",
+      "categoria": "caes",
+      "porteIndicado": "pequeno",
+      "idadeIndicada": "filhote",
+      "material": "borracha",
+      "finalidade": "exercicio",
+      "destaque": false,
+      "estoque": 30,
+      "avaliacaoMedia": 4.5,
+      "numAvaliacoes": 56,
+      "imagens": [
+        {
+          "url": "https://images.unsplash.com/photo-1574153485177-ac1d592187b0?w=600",
+          "ordem": 1,
+          "principal": true
+        }
+      ],
+      "comportamentosIndicados": [
+        "Agitado",
+        "Brincalhão"
+      ],
+      "contraindicadoAlergias": [],
+      "palavrasChave": [
+        "bola",
+        "cachorro",
+        "exercício"
+      ],
+      "ativo": true
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "6ef7f7a4-0f69-47f9-a02b-1d338a2198f0",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "numero": 665968,
+      "endereco": {
+        "cep": "06385-090",
+        "rua": "Rua Paraíso",
+        "numero": "123",
+        "complemento": "",
+        "bairro": "Jardim Bom Pastor",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 19.9,
+      "frete": 19.9,
+      "desconto": 0,
+      "total": 39.8,
+      "status": "confirmado",
+      "data": "2026-05-18T14:47:24.534Z"
+    },
+    {
+      "id": "46bc8860-0ea2-452f-b96a-1ac2906a1236",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "numero": 320436,
+      "itens": [
+        {
+          "produto": 5,
+          "quantidade": 1,
+          "precoUnitario": 34.9
+        }
+      ],
+      "enderecoEntrega": {
+        "cep": "06385-090",
+        "rua": "Rua Paraíso",
+        "numero": "1234",
+        "complemento": "",
+        "bairro": "Jardim Bom Pastor",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 34.9,
+      "frete": 19.9,
+      "desconto": 0,
+      "total": 54.8,
+      "status": "confirmado",
+      "data": "2026-05-18T14:50:05.397Z"
+    },
+    {
+      "id": "37821e81-d7a4-45e8-b601-4e49fbc56d1d",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "numero": 208111,
+      "itens": [
+        {
+          "produto": 7,
+          "quantidade": 1,
+          "precoUnitario": 19.9
+        }
+      ],
+      "enderecoEntrega": {
+        "cep": "06362-040",
+        "rua": "Rua Oscar Bressane",
+        "numero": "123",
+        "complemento": "",
+        "bairro": "Jardim Elzinha",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 19.9,
+      "frete": 19.9,
+      "desconto": 0,
+      "total": 39.8,
+      "status": "confirmado",
+      "data": "2026-05-18T14:53:14.805Z",
+      "rastreio": {
+        "codigo": "BR1779115994805BR",
+        "status": "Pedido confirmado",
+        "atualizacao": "2026-05-18T14:53:14.805Z",
+        "historico": [
+          {
+            "data": "2026-05-18T14:53:14.805Z",
+            "status": "Pedido confirmado",
+            "descricao": "Seu pedido foi confirmado e está sendo processado.",
+            "local": "Centro de Distribuição - São Paulo/SP"
+          }
+        ]
+      }
+    },
+    {
+      "id": "f91661ed-6bef-4a38-924a-d6764ff2c81d",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "numero": 339107,
+      "itens": [
+        {
+          "produto": 7,
+          "quantidade": 1,
+          "precoUnitario": 19.9
+        }
+      ],
+      "enderecoEntrega": {
+        "cep": "06351-090",
+        "rua": "Rua Lambari",
+        "numero": "121",
+        "complemento": "",
+        "bairro": "Águas da Fazendinha",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 19.9,
+      "frete": 19.9,
+      "desconto": 0,
+      "total": 39.8,
+      "status": "confirmado",
+      "data": "2026-05-18T14:57:07.389Z",
+      "rastreio": {
+        "codigo": "BR1779116227389BR",
+        "status": "Pedido confirmado",
+        "atualizacao": "2026-05-18T14:57:07.389Z",
+        "historico": [
+          {
+            "data": "2026-05-18T14:57:07.389Z",
+            "status": "Pedido confirmado",
+            "descricao": "Seu pedido foi confirmado e está sendo processado.",
+            "local": "Centro de Distribuição - São Paulo/SP"
+          }
+        ]
+      }
+    },
+    {
+      "id": "246b0754-e319-497b-8a4e-bec98bdca046",
+      "usuarioId": "012c46ad-dad8-48e1-84c9-6f509e4842e6",
+      "numero": 940663,
+      "itens": [
+        {
+          "produto": 2,
+          "quantidade": 1,
+          "precoUnitario": 189.9
+        }
+      ],
+      "enderecoEntrega": {
+        "cep": "06351-040",
+        "rua": "Estrada Fazendinha",
+        "numero": "1",
+        "complemento": "",
+        "bairro": "Pousada dos Bandeirantes",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 189.9,
+      "frete": 0,
+      "desconto": 0,
+      "total": 189.9,
+      "status": "confirmado",
+      "data": "2026-05-18T15:03:11.026Z",
+      "rastreio": {
+        "codigo": "BR1779116591026BR",
+        "status": "Pedido confirmado",
+        "atualizacao": "2026-05-18T15:03:11.026Z",
+        "historico": [
+          {
+            "data": "2026-05-18T15:03:11.026Z",
+            "status": "Pedido confirmado",
+            "descricao": "Seu pedido foi confirmado e está sendo processado.",
+            "local": "Centro de Distribuição - São Paulo/SP"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8846e499-7d34-4eca-9e12-4c810e57648e",
+      "usuarioId": "7c7c3c27-480f-40a2-b6e4-35b73c7306c9",
+      "numero": 250528,
+      "itens": [
+        {
+          "produto": 3,
+          "quantidade": 1,
+          "precoUnitario": 45.9
+        }
+      ],
+      "enderecoEntrega": {
+        "cep": "06385-090",
+        "rua": "Rua Paraíso",
+        "numero": "1",
+        "complemento": "",
+        "bairro": "Jardim Bom Pastor",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 45.9,
+      "frete": 19.9,
+      "desconto": 0,
+      "total": 65.8,
+      "status": "confirmado",
+      "data": "2026-05-18T15:44:55.672Z",
+      "rastreio": {
+        "codigo": "BR1779119095672BR",
+        "status": "Pedido confirmado",
+        "atualizacao": "2026-05-18T15:44:55.672Z",
+        "historico": [
+          {
+            "data": "2026-05-18T15:44:55.672Z",
+            "status": "Pedido confirmado",
+            "descricao": "Seu pedido foi confirmado e está sendo processado.",
+            "local": "Centro de Distribuição - São Paulo/SP"
+          }
+        ]
+      }
+    },
+    {
+      "id": "88bd4efa-512b-42e1-a77c-42048ef9194e",
+      "usuarioId": "7c7c3c27-480f-40a2-b6e4-35b73c7306c9",
+      "numero": 591814,
+      "itens": [
+        {
+          "produto": 3,
+          "quantidade": 1,
+          "precoUnitario": 45.9
+        }
+      ],
+      "enderecoEntrega": {
+        "cep": "06351-040",
+        "rua": "Estrada Fazendinha",
+        "numero": "11",
+        "complemento": "",
+        "bairro": "Pousada dos Bandeirantes",
+        "cidade": "Carapicuíba",
+        "estado": "SP"
+      },
+      "formaPagamento": "pix",
+      "parcelas": 1,
+      "subtotal": 45.9,
+      "frete": 19.9,
+      "desconto": 0,
+      "total": 65.8,
+      "status": "confirmado",
+      "data": "2026-05-18T15:48:13.214Z",
+      "rastreio": {
+        "codigo": "BR1779119293214BR",
+        "status": "Pedido confirmado",
+        "atualizacao": "2026-05-18T15:48:13.214Z",
+        "historico": [
+          {
+            "data": "2026-05-18T15:48:13.214Z",
+            "status": "Pedido confirmado",
+            "descricao": "Seu pedido foi confirmado e está sendo processado.",
+            "local": "Centro de Distribuição - São Paulo/SP"
+          }
+        ]
+      }
+    }
+  ]
+}

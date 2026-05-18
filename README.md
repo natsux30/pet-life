@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+Instruções para rodar o projeto:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+Após realizar o download do projeto acesse a pasta backend, abra o cmd dentro da pasta e rode os comandos:
 
-### `npm start`
+* npm install
+* npm run dev
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Volte para raiz e depois acesse a pasta frontend, abra o cmd dentro da pasta e rode os comandos:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* npm install
+* npm start 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Após realizar os comandos acima, a página da loja irá abrir no navegador.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Como realizar o cadastro:
 
-### `npm run eject`
+* Na barra de navegação clique em "Cadastro"
+* Preencha os dados solicitados e finalize o cadastro
+* Ao finalizar o cadastro, o usuário será encaminhado para o perfil.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Como cadastrar um pet:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Na tela de perfil, é possível cadastrar o pet clicando em "Cadastrar Pet"
+* Após preencher as informações, itens com base no cadastro do pet serão exibidos na página da loja.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Como realizar uma compra:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Clique em "Loja" na barra de navegação
+* Para verificar mais detalhes do produto basta clicar no card e uma nova página será aberta
+* Escolha o produto e clique em "Adicionar ao carrinho" ou "Comprar agora".
+* No carrinho clique em "Finalizar Compra"
+* Preencha os dados solicitados e escolha a forma de pagamento.
 
-## Learn More
+Como rastrear o pedido:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Clique em "Rastrear Pedido" após finalizar a compra
+* Digite o número do pedido na área de busca para buscar o pedido
+* Após clicar em buscar, você será encaminhado para página do pedido contendo os detalhes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Tecnologias utilizadas:
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Frontend:  React.js + CSS3
 
-### Making a Progressive Web App
+Backend:   Node.js + Express
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Banco:     JSON 
 
-### Advanced Configuration
+APIs:      ViaCEP (CEP) 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Banco de imagens: Unsplash
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
