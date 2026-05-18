@@ -10,7 +10,7 @@ Após realizar o download do projeto acesse a pasta backend, abra o cmd dentro d
 Volte para raiz e depois acesse a pasta frontend, abra o cmd dentro da pasta e rode os comandos:
 
 * npm install
-* npm start 
+* npm start
 
 
 
@@ -48,13 +48,28 @@ Como rastrear o pedido:
 Tecnologias utilizadas:
 
 
+
 Frontend:  React.js + CSS3
 
 Backend:   Node.js + Express
 
-Banco:     JSON 
+Banco:     JSON
 
-APIs:      ViaCEP (CEP) 
+APIs:      ViaCEP (CEP)
 
-Banco de imagens: Unsplash
+Banco de imagens: Unsplash:
+
+
+
+Integrantes:
+
+Carolina Lopes
+
+Ivan de Oliveira Pereira  
+
+Rafael Aguiar Sanchietta
+
+Sofia Freire de Andrade Clark
+
+Vitor Manoel Felipe Da Silva
 
